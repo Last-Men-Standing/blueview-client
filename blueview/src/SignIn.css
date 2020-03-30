@@ -1,0 +1,45 @@
+.main {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signInContainer {
+  width: 375px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #DDD;
+	border-radius: 5px;
+  box-shadow: 0 0 8px -1px #DDD;
+}
+
+.signInTitle {
+  margin-bottom: 0;
+  text-align: center;
+  font-family: "Passion One";
+  font-size: 60px;
+  letter-spacing: 1px;
+  color: #0D4F8B;
+}
+
+.signInSubtitle {
+  margin-top: 0;
+  text-align: center;
+}
+
+label, input {
+  display: block;
+}
+
+.signInField {
+  margin-bottom: 20px;
+}
+
+.signInSubmit {
+  margin: 30px auto 0 auto;
+}
