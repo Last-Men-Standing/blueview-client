@@ -53,21 +53,21 @@ class Register extends React.Component {
   render() {
     return (
       <div className="main">
-        <div className="RegisterContainer">
-          <h1 className="RegisterTitle">BlueView</h1>
-          <h2 className="RegisterSubtitle">Register</h2>
+        <div className="registerContainer">
+          <h1 className="registerTitle">BlueView</h1>
+          <h2 className="registerSubtitle">Create Account</h2>
           <form onSubmit={this.handleSubmit}>
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" className="RegisterField" value={this.state.firstName} onChange={this.updateFirstName} />
+            <input type="text" id="firstName" className="registerField" value={this.state.firstName} onChange={this.updateFirstName} />
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" className="RegisterField" value={this.state.lastName} onChange={this.updateLastName} />
+            <input type="text" id="lastName" className="registerField" value={this.state.lastName} onChange={this.updateLastName} />
             <label for="username">Username:</label>
-            <input type="text" id="username" className="RegisterField" value={this.state.username} onChange={this.updateUsername} />
+            <input type="text" id="username" className="registerField" value={this.state.username} onChange={this.updateUsername} />
             <label for="password">Password:</label>
-            <input type="password" id="password" className="RegisterField" value={this.state.password} onChange={this.updatePassword} />
+            <input type="password" id="password" className="registerField" value={this.state.password} onChange={this.updatePassword} />
             <label for="confirmPw">Confirm Password:</label>
-            <input type="password" id="confirmPw" className="RegisterField" value={this.state.confirmPw} onChange={this.updateConfirmPw} />
-            <input type="submit" value="Submit" className="RegisterSubmit"/>
+            <input type="password" id="confirmPw" className="registerField" value={this.state.confirmPw} onChange={this.updateConfirmPw} />
+            <input type="submit" value="ENTER" className="registerSubmit"/>
           </form>
         </div>
       </div>

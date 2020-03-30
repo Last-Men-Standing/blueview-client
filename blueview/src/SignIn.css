@@ -1,10 +1,10 @@
 .main {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: Calibri;
 }
 
 .signInContainer {
@@ -16,30 +16,67 @@
   border: 2px solid #DDD;
 	border-radius: 5px;
   box-shadow: 0 0 8px -1px #DDD;
+  background-color: #FCFCFC;
 }
 
 .signInTitle {
   margin-bottom: 0;
   text-align: center;
-  font-family: "Passion One";
+  font-family: 'Racing Sans One';
   font-size: 60px;
   letter-spacing: 1px;
   color: #0D4F8B;
+  font-weight: normal;
 }
 
 .signInSubtitle {
   margin-top: 0;
   text-align: center;
+  color: #777;
 }
 
 label, input {
   display: block;
 }
 
+label {
+  color: #777;
+}
+
 .signInField {
   margin-bottom: 20px;
+  padding-left: 3px;
+  width: 300px;
+  height: 20px;
+
+  border-radius: 2px;
+  border: solid 2px #DDD;
+  box-shadow: 0 0 8px -2px #DDD;
+  outline: none;
+
+  font-weight: bold;
+  color: #464646;
 }
 
 .signInSubmit {
   margin: 30px auto 0 auto;
+  height: 40px;
+  width: 80px;
+
+  background-color: #0D4F8B;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+
+  font-family: 'Fugaz One';
+  letter-spacing: 1px;
+  font-size: 13px;
+  color: #FFF;
+
+  cursor: pointer;
+}
+
+.signInSubmit:hover {
+  background-color: #2686DE;
+  transition: .1s;
 }

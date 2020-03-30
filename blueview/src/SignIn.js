@@ -36,7 +36,7 @@ class SignIn extends React.Component {
             <input type="text" id="username" className="signInField" value={this.state.username} onChange={this.updateUsername} />
             <label for="password">Password:</label>
             <input type="password" id="password" className="signInField" value={this.state.password} onChange={this.updatePassword} />
-            <input type="submit" value="Submit" className="signInSubmit"/>
+            <input type="submit" value="ENTER" className="signInSubmit"/>
           </form>
         </div>
       </div>
