@@ -42,12 +42,13 @@ class Register extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+
     alert("First Name: " + this.state.firstName + 
           "\nLast Name: " + this.state.lastName +
           "\nUsername: " + this.state.username +
           "\nPassword: " + this.state.password +
           "\nConfirm: " + this.state.confirmPw);
-    event.preventDefault();
   }
 
   render() {

@@ -67,6 +67,7 @@ label {
   border: none;
   border-radius: 5px;
   outline: none;
+  box-shadow: 0 0 8px 0px #DDD;
 
   font-family: 'Fugaz One';
   letter-spacing: 1px;
