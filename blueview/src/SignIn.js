@@ -21,8 +21,8 @@ class SignIn extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
     event.preventDefault();
+    alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
   }
 
   render() {

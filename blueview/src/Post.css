@@ -1,5 +1,6 @@
 .postBox {
     width: 550px;
+    margin-top: 15px;
 
     border: 2px solid #DDD;
     border-radius: 3px;

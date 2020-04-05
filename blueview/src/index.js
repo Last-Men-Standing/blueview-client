@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Post from './Post';
 import * as serviceWorker from './serviceWorker';
+import DepartmentPage from './DepartmentPage';
+import Register from './Register';
+import ZipSearch from './ZipSearch'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Post />
+    <ZipSearch />
   </React.StrictMode>,
   document.getElementById('root')
 );
