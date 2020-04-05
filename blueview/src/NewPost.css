@@ -1,5 +1,14 @@
+.newPostContainer {
+  margin-top: 10px;
+}
+
+.newPostLabel {
+  font-family: Calibri;
+}
+
 .newPostText {
-  width: 550px;
+  width: 100%;
+  box-sizing: border-box;
 
   border: 2px solid #DDD;
   border-radius: 3px;
@@ -7,4 +16,45 @@
   background-color: #FCFCFC;
 
   font-family: 'Asap';
+  outline: none;
+}
+
+.newPostControls * {
+  display: inline;
+}
+
+.newPostControls {
+  padding-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancelPost {
+  height: 25px;
+
+  cursor: pointer;
+  border: 2px solid #DDD;
+  border-radius: 2px;
+
+  font-family: 'Asap';
+  color: #666;
+
+  box-shadow: 0 0 8px -1px #DDD;
+}
+
+.submitPost {
+  height: 25px;
+  width: 75px;
+  margin-left: 10px;
+
+  cursor: pointer;
+  border: 2px solid #2686DE;
+  border-radius: 2px;
+
+  font-family: 'Asap';
+  color: #2686DE;
+  font-weight: bold;
+
+  background-color: #BFEFFF;
+  box-shadow: 0 0 8px -1px #DDD;
 }

@@ -42,3 +42,32 @@ Bottom of page --------------------
   display: flex;
   justify-content: center;
 }
+
+.postControlsContainer {
+  padding-bottom: 10px;
+  border-bottom: solid 2px #EEE;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.postFeedContainer {
+  width: 554px;
+  margin-bottom: 60px;
+}
+
+.createNewPostButton {
+  height: 22px;
+  margin-right: 5px;
+
+  cursor: pointer;
+  border: 2px solid #32CD32;
+  border-radius: 2px;
+
+  font-family: 'Asap';
+  color: #32CD32;
+  font-weight: bold;
+
+  background-color: #BDFCC9;
+  box-shadow: 0 0 8px -1px #DDD;
+}

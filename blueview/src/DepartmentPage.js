@@ -27,8 +27,8 @@ class PostControls extends React.Component {
 
   render() {
     return (
-      <div className="postControlsMain">
-        <button onClick={this.props.showNewPost}>
+      <div className="postControlsContainer">
+        <button className="createNewPostButton" onClick={this.props.showNewPost}>
           New Post
         </button>
       </div>
@@ -65,15 +65,17 @@ class NewPost extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label className="newPostLabel">Create a new post:</label>
           <textarea className="newPostText" value={this.state.text} onChange={this.onType} />
-          <button className="cancelPost" onClick={this.props.cancelPost}>Cancel</button>
-          <input type="submit" value="Post" />
+          <div className="newPostControls">
+            <button className="cancelPost" onClick={this.props.cancelPost}>Cancel</button>
+            <input className="submitPost" type="submit" value="Post" />
+          </div>
         </form>
       </div>
     );
   }
 }
 
-class PostContainer extends React.Component {
+class PostFeed extends React.Component {
   constructor(props) {
     super(props);
 
@@ -99,9 +101,16 @@ class PostContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} />)}
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
         <Post />
         <Post />
       </div>
@@ -118,7 +127,7 @@ class DepartmentContent extends React.Component {
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
-          <PostContainer />
+          <PostFeed />
         </div>
       </div>
     );
