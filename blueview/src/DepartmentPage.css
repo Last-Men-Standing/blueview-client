@@ -1,8 +1,11 @@
-.widthBox {
-  max-width: 850px;
-  margin: 0 auto;
-
+.centerBox {
+  width: 840px;
+  margin: 0 70px;
 }
+
+/*
+Top of page -----------------------
+*/
 
 .departmentHeaderMain {
   top: 0;
@@ -11,6 +14,8 @@
   border-bottom: 2px solid #DDD;
   background-color: #FCFCFC;
   box-shadow: 0 0 8px -1px #DDD;
+  display: flex;
+  justify-content: center;
 }
 
 .departmentName {
@@ -27,4 +32,13 @@
   font-family: 'Asap';
   font-size: 15px;
   color: #888;
+}
+
+/*
+Bottom of page --------------------
+*/
+
+.departmentContentMain {
+  display: flex;
+  justify-content: center;
 }

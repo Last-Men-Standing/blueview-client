@@ -1,0 +1,10 @@
+.newPostText {
+  width: 550px;
+
+  border: 2px solid #DDD;
+  border-radius: 3px;
+  box-shadow: 0 0 8px -1px #DDD;
+  background-color: #FCFCFC;
+
+  font-family: 'Asap';
+}

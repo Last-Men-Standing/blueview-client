@@ -9,7 +9,7 @@ import ZipSearch from './ZipSearch'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ZipSearch />
+    <DepartmentPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
