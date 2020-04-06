@@ -19,6 +19,7 @@ class Register extends React.Component {
     this.updatePassword = this.updatePassword.bind(this);
     this.updateConfirmPw = this.updateConfirmPw.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.alreadyUser = this.alreadyUser.bind(this);
   }
 
   updateFirstName(event) {
@@ -51,6 +52,10 @@ class Register extends React.Component {
           "\nConfirm: " + this.state.confirmPw);
   }
 
+  alreadyUser(event) {
+    alert("Already a user!");
+  }
+
   render() {
     return (
       <div className="main">
@@ -70,6 +75,7 @@ class Register extends React.Component {
             <input type="password" id="confirmPw" className="registerField" value={this.state.confirmPw} onChange={this.updateConfirmPw} />
             <input type="submit" value="ENTER" className="registerSubmit"/>
           </form>
+          <a className="alreadyUser" onClick={this.alreadyUser}>Alredy have an account? Sign in here!</a>
         </div>
       </div>
     );

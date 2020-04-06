@@ -6,38 +6,41 @@ import './Post.css';
 class Post extends React.Component {
   constructor(props) {
     super(props);
+    /*
     this.state = {
       user: 'Rachel Beenest', 
-      time: '8:01 PM',
+      date: '2020-05-17',
+      title: 'Post Title',
       text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.'
     }
-
-    this.updateUsername = this.updateUsername.bind(this);
-    this.updatePassword = this.updatePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    */
   }
 
-  updateUsername(event) {
-    this.setState({username: event.target.value});
+  /* VERSION USING STATE
+  render() {
+    return (
+      <div className="postBox">
+        <p className="postInfo">
+           <span className="postTitle">{this.state.title}</span> on {this.state.date}
+           <a className="userName">{this.state.user}</a>
+        </p>
+        <p className="postBody">
+          {this.state.text}
+        </p>
+      </div>
+    );
   }
-
-  updatePassword(event) {
-    this.setState({password: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
-    event.preventDefault();
-  }
+  */
 
   render() {
     return (
       <div className="postBox">
         <p className="postInfo">
-          <a className="userName">{this.state.user}</a> at {this.state.time}
+          <span className="postTitle">{this.props.title}</span> on {this.props.date}
+          <a className="userName">{this.props.user}</a>
         </p>
         <p className="postBody">
-          {this.state.text}
+          {this.props.text}
         </p>
       </div>
     );

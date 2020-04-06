@@ -9,7 +9,7 @@
 
 .registerContainer {
   width: 375px;
-  height: 585px;
+  height: 605px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +41,7 @@ label, input {
 
 label {
   color: #777;
+  font-size: 15px;
 }
 
 .registerField {
@@ -80,4 +81,12 @@ label {
 .registerSubmit:hover {
   background-color: #2686DE;
   transition: .1s;
+}
+
+.alreadyUser {
+  margin-top: 30px;
+  
+  font-size: 13px;
+  color: #2686DE;
+  cursor: pointer;
 }

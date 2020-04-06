@@ -102,14 +102,30 @@ class NewPost extends React.Component {
     super(props);
 
     this.state = {
+      title: '',
+      date: '',
       text: ''
     }
 
-    this.onType = this.onType.bind(this);
+    this.changeTitle = this.changeTitle.bind(this);
+    this.changeDate = this.changeDate.bind(this);
+    this.changeText = this.changeText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onType(event) {
+  changeTitle(event) {
+    this.setState({
+      title: event.target.value
+    });
+  }
+
+  changeDate(event) {
+    this.setState({
+      date: event.target.value
+    });
+  }
+
+  changeText(event) {
     this.setState({
       text: event.target.value
     });
@@ -117,15 +133,27 @@ class NewPost extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert("Text: " + this.state.text);
+    alert("Title: " + this.state.title +
+          "\nDate: " + this.state.date +
+          "\nText: " + this.state.text);
   }
 
   render() {
     return (
       <div className="newPostContainer">
         <form onSubmit={this.handleSubmit}>
-          <label className="newPostLabel">Create a new post:</label>
-          <textarea className="newPostText" value={this.state.text} onChange={this.onType} />
+          <div className="newPostInfo">
+            <div className="newPostItem">
+              <label className="newPostLabel">Title:</label>
+              <input className="newPostTitle" type="text" onChange={this.changeTitle} />
+            </div>
+            <div className="newPostItem">
+              <label className="newPostLabel">Date of event:</label>
+              <input className="newPostDate" type="date" onChange={this.changeDate} />
+            </div>
+          </div>
+          <label className="newPostLabel">Post text:</label>
+          <textarea className="newPostText" value={this.state.text} onChange={this.changeText} />
           <div className="newPostControls">
             <button className="cancelPost" onClick={this.props.cancelPost}>Cancel</button>
             <input className="submitPost" type="submit" value="Post" />
