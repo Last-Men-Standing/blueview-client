@@ -1,18 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Post from './Post';
-import * as serviceWorker from './serviceWorker';
-import DepartmentPage from './DepartmentPage';
-import Register from './Register';
-import ZipSearch from './ZipSearch'
+import ReactDOM from "react-dom";
+import React from "react";
+import {BrowserRouter as Router} from "react-router-dom";
+import ReactRouter from './Router/router';
+import * as serviceWorker from './Utils/serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ZipSearch />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+
+ReactDOM.render(<Router>
+
+  <ReactRouter/>
+</Router>
+  ,
+  document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

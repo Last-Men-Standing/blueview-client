@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 // import logo from './logo.svg';
 import './Post.css';
 
