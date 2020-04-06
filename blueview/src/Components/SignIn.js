@@ -29,10 +29,10 @@ class SignIn extends React.Component {
 
   render() {
     const { toZipSearch } = this.state;
-
-      if (toZipSearch) {
-        return <Redirect to='/ZipSearch'/>;
-      }
+    const path = '/ZipSearch';
+    if (toZipSearch) {
+      return <Redirect to={path}/>;
+    }
     return (
       
       <React.Fragment>

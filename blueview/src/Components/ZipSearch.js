@@ -1,18 +1,16 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 // import logo from './logo.svg';
 import './ZipSearch.css';
 class ZipSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '', toDepartmentPage: false}
+    this.state = {zipcode:'', toDepartmentPage: false, department: null}
 
     this.updateZip = this.updateZip.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  updateUsername(event) {
-    this.setState({username: event.target.value});
   }
 
   updateZip(event) {
@@ -22,19 +20,25 @@ class ZipSearch extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert('Zip Code: ' + this.state.zipcode);
-    const data = {
-      zipcode: this.state.zipcode
-    }
-    // axios.get('http://localhost:3000/department/zipcode/:zipcode', data)
-    //     .then(res => console.log(res.data));
-    this.setState({toDepartmentPage: true});
+    console.log(this.state.zipcode);
+    
+    axios.get(`${baseUrl}/department/zipcode/${this.state.zipcode}`)
+      .then(res => {
+        const data = res.data
+        console.log(data.department[0]);
+        this.setState({department: data.department[0]});
+        this.setState({toDepartmentPage: true});
+      })
+      console.log("exit");
   }
   
   render() {
-    const { toDepartmentPage } = this.state;
-
-    if (toDepartmentPage) {
-      return <Redirect to='/DepartmentPage'/>;
+    if (this.state.toDepartmentPage) {
+      console.log("page hit");
+      const path = '/DepartmentPage/'+ this.state.department.id;
+      console.log(path);
+      return <Redirect to={path}/>;
+      
     }
     
     return (

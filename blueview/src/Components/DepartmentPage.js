@@ -1,5 +1,7 @@
 import React from 'react';
 import Post from './Post.js';
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 import './DepartmentPage.css';
 import './NewPost.css';
 
@@ -15,7 +17,6 @@ class Header extends React.Component {
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
   }
-
   search(event) {
     alert("Search");
   }
@@ -50,14 +51,30 @@ class Header extends React.Component {
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {id: "dummy",name: "dummy", address:"dummy", zipcode: "", overall_rating:""};
+    
+  }
+  
+  
+  componentDidMount() {
+    axios.get(`${baseUrl}/department/${this.props.id}`)
+      .then(res => {
+        const data = res.data.department[0]
+        console.log(data);
+        this.setState({id: this.props.id});
+        this.setState({name: data.name});
+        this.setState({address: data.address});
+        // return {id: this.props.id, name: data.name, address: data.address};
+      })
   }
 
   render() {
     return (
       <div className="departmentHeaderMain">
         <div className="centerBox">
-          <h1 className="departmentName">Washington County Sheriff's Office</h1>
-          <h2 className="departmentAddress">399 Broadway, Fort Edward, NY</h2>
+          <h1 className="departmentName">{this.state.name}</h1>
+          <h2 className="departmentAddress">{this.state.address}</h2>
+          {/* <h3 className="id">{this.state.id}</h3> */}
         </div>
       </div>
     );
@@ -124,11 +141,21 @@ class PostFeed extends React.Component {
     super(props);
 
     this.state = {
-      creatingPost: false
+      creatingPost: false,
+      posts: [],
     }
 
     this.showNewPost = this.showNewPost.bind(this);
     this.cancelPost = this.cancelPost.bind(this);
+  }
+  componentDidMount() {
+    axios.get(`${baseUrl}/department/${this.props.id}/post/all`)
+      .then(res => {
+        const data = res.data.department_posts;
+        console.log("PostFeed Mount");
+        console.log(data);
+        this.setState({posts: data});
+      })
   }
 
   showNewPost() {
@@ -182,12 +209,11 @@ class DepartmentPage extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <div className="departmentPageMain">
         <Header />
-        <DepartmentHeader />
+        <DepartmentHeader id= {this.props.match.params.id} />
         <DepartmentContent />
       </div>
     );
