@@ -6,17 +6,16 @@ import './Post.css';
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    /*
+    
     this.state = {
-      user: 'Rachel Beenest', 
+      user: 'User Name', 
       date: '2020-05-17',
       title: 'Post Title',
-      text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.'
+      text: 'This is the body of the post. This is the body of the post. This is the body of the post. This is the body of the post. This is the body of the post. This is the body of the post.'
     }
-    */
+    
   }
 
-  /* VERSION USING STATE
   render() {
     return (
       <div className="postBox">
@@ -30,8 +29,8 @@ class Post extends React.Component {
       </div>
     );
   }
-  */
-
+  
+  /*
   render() {
     return (
       <div className="postBox">
@@ -45,6 +44,7 @@ class Post extends React.Component {
       </div>
     );
   }
+  */
 }
 
 export default Post;

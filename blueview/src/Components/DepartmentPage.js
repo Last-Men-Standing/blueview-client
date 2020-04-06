@@ -185,6 +185,15 @@ class PostFeed extends React.Component {
         <Post />
         <Post />
         <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
       </div>
     );
   }
