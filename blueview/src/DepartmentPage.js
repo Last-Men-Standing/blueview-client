@@ -12,7 +12,7 @@ class DepartmentHeader extends React.Component {
     return (
       <div className="departmentHeaderMain">
         <div className="centerBox">
-          <h1 className="departmentName">Washington County Sheriffs Office</h1>
+          <h1 className="departmentName">Washington County Sheriff's Office</h1>
           <h2 className="departmentAddress">399 Broadway, Fort Edward, NY</h2>
         </div>
       </div>

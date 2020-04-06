@@ -52,7 +52,8 @@ Bottom of page --------------------
 }
 
 .postFeedContainer {
-  width: 554px;
+  width: 100%;
+  max-width: 554px;
   margin-bottom: 60px;
 }
 
