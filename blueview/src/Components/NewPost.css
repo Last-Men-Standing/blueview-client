@@ -6,10 +6,25 @@
   font-family: Calibri;
 }
 
+.newPostInfo {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.newPostTitle {
+  height: 18px;
+  width: 300px;
+  margin-right: 15px;
+  padding: 1px 3px;
+}
+
 .newPostText {
   width: 100%;
   box-sizing: border-box;
+}
 
+.newPostTitle, .newPostDate, .newPostText {
   border: 2px solid #DDD;
   border-radius: 3px;
   box-shadow: 0 0 8px -1px #DDD;
@@ -18,6 +33,7 @@
   font-family: 'Asap';
   outline: none;
 }
+
 
 .newPostControls * {
   display: inline;

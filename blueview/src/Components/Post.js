@@ -8,7 +8,8 @@ class Post extends React.Component {
     super(props);
     this.state = {
       user: 'Rachel Beenest', 
-      time: '8:01 PM',
+      date: '2020-05-17',
+      title: 'Post Title',
       text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.'
     }
 
@@ -34,7 +35,8 @@ class Post extends React.Component {
     return (
       <div className="postBox">
         <p className="postInfo">
-          <a className="userName">{this.state.user}</a> at {this.state.time}
+           <span className="postTitle">{this.state.title}</span> on {this.state.date}
+           <a className="userName">{this.state.user}</a>
         </p>
         <p className="postBody">
           {this.state.text}
