@@ -9,7 +9,7 @@
 
 .signInContainer {
   width: 375px;
-  height: 400px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,6 +41,7 @@ label, input {
 
 label {
   color: #777;
+  font-size: 15px;
 }
 
 .signInField {
@@ -80,4 +81,12 @@ label {
 .signInSubmit:hover {
   background-color: #2686DE;
   transition: .1s;
+}
+
+.notUser {
+  margin-top: 30px;
+  
+  font-size: 13px;
+  color: #2686DE;
+  cursor: pointer;
 }

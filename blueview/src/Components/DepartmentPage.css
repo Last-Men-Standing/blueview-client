@@ -1,3 +1,7 @@
+body {  /* May be best to apply to router instead. Not sure yet */
+  margin: 0;
+}
+
 .centerBox {
   width: 840px;
   margin: 0 70px;

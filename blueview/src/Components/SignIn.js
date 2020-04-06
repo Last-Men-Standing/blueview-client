@@ -11,6 +11,7 @@ class SignIn extends React.Component {
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.notUser = this.notUser.bind(this);
   }
 
   updateUsername(event) {
@@ -25,6 +26,10 @@ class SignIn extends React.Component {
     event.preventDefault();
     alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
     this.setState({toZipSearch: true});
+  }
+
+  notUser(event) {
+    alert("Not a user!");
   }
 
   render() {
@@ -47,6 +52,7 @@ class SignIn extends React.Component {
               <input type="password" id="password" className="signInField" value={this.state.password} onChange={this.updatePassword} />
               <input type="submit" value="ENTER" className="signInSubmit"/>
             </form>
+            <a className="notUser" onClick={this.notUser}>Don't have an account? Sign up here!</a>
           </div>
         </div>
       </React.Fragment>
