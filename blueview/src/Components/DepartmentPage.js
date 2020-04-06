@@ -199,19 +199,15 @@ class PostFeed extends React.Component {
   }
 
   render() {
+    const { posts } = this.state;
     return (
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} />)}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {posts.map(post => (
+          <Post title={post.title} date={post.date} 
+          user={post.user} text={post.text}  />
+        ))}
       </div>
     );
   }
@@ -226,7 +222,7 @@ class DepartmentContent extends React.Component {
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
-          <PostFeed />
+          <PostFeed id= {this.props.id}/>
         </div>
       </div>
     );
@@ -242,7 +238,7 @@ class DepartmentPage extends React.Component {
       <div className="departmentPageMain">
         <Header />
         <DepartmentHeader id= {this.props.match.params.id} />
-        <DepartmentContent />
+        <DepartmentContent id= {this.props.match.params.id} />
       </div>
     );
   }
