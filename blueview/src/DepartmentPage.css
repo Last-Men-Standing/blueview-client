@@ -4,12 +4,58 @@
 }
 
 /*
+Header ----------------------------
+*/
+
+.headerBody {
+  top: 0;
+  position: fixed;
+  width: 100%;
+
+  border-bottom: 2px solid #DDD;
+  background-color: #EEE;
+  box-shadow: 0 0 8px -1px #DDD;
+
+  display: flex;
+  justify-content: space-between;
+
+  z-index: 100;
+}
+
+.logo {
+  margin: 2px 0 2px 8px;
+  padding: 0;
+
+  font-family: 'Racing Sans One';
+  font-size: 20px;
+  color: #0D4F8B;
+}
+
+.search {
+  margin-top: 5px;
+  font-family: 'Asap';
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+}
+
+.signInButton, .signOutButton {
+  margin: 5px 7px 0 0;
+  font-family: 'Asap';
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+}
+
+/*
 Top of page -----------------------
 */
 
 .departmentHeaderMain {
   top: 0;
-  padding: 80px 0 15px 0;
+  position: fixed;
+  width: 100%;
+  padding: 95px 0 15px 0;
   margin-bottom: 15px;
   border-bottom: 2px solid #DDD;
   background-color: #FCFCFC;
@@ -41,6 +87,8 @@ Bottom of page --------------------
 .departmentContentMain {
   display: flex;
   justify-content: center;
+
+  margin-top: 180px;
 }
 
 .postControlsContainer {

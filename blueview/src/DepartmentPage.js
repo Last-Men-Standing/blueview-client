@@ -3,6 +3,50 @@ import Post from './Post.js';
 import './DepartmentPage.css';
 import './NewPost.css';
 
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedIn: false
+    }
+
+    this.search = this.search.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.signOut = this.signOut.bind(this);
+  }
+
+  search(event) {
+    alert("Search");
+  }
+
+  signIn(event) {
+    alert("Sign In");
+  }
+
+  signOut(event) {
+    alert("Sign Out");
+  }
+
+  render() {
+    const loggedIn = this.state.loggedIn;
+    let accountControl;
+    if (loggedIn) {
+      accountControl = <a className="signOutButton" onClick={this.signOut}>Sign Out</a>;
+    } else {
+      accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
+    }
+
+    return (
+      <div className="headerBody">
+        <p className="logo">BlueView</p>
+        <a className="search" onClick={this.search}>Search</a>
+        {accountControl}
+      </div>
+    );
+  }
+}
+
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -142,6 +186,7 @@ class DepartmentPage extends React.Component {
   render() {
     return (
       <div className="departmentPageMain">
+        <Header />
         <DepartmentHeader />
         <DepartmentContent />
       </div>
