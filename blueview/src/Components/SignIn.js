@@ -2,11 +2,13 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 // import logo from './logo.svg';
 import './SignIn.css';
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '',toZipSearch: false}
+    this.state = {username: '', password: '',toZipSearch: false,toRegister: false}
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -30,13 +32,19 @@ class SignIn extends React.Component {
 
   notUser(event) {
     alert("Not a user!");
+    this.setState({toRegister: true});
   }
 
   render() {
     const { toZipSearch } = this.state;
+    const { toRegister} = this.state;
     const path = '/ZipSearch';
     if (toZipSearch) {
       return <Redirect to={path}/>;
+    }
+    const p = 'register';
+    if(toRegister){
+      return <Redirect to={p}/>
     }
     return (
       

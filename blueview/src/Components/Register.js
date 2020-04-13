@@ -1,6 +1,8 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './Register.css';
+import baseUrl from '../Utils/config';
+import axios from 'axios';
 
 class Register extends React.Component {
   constructor(props) {
@@ -50,6 +52,17 @@ class Register extends React.Component {
           "\nUsername: " + this.state.username +
           "\nPassword: " + this.state.password +
           "\nConfirm: " + this.state.confirmPw);
+          
+    axios.post(`${baseUrl}/account/register`, {
+      headers:{'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
+      body:{first_name:this.state.firstName, 
+            last_name:this.state.lastName, 
+            username:this.state.username,
+            password:this.state.password,
+           password_2:this.state.password_2}
+     }).then(res=>{
+      console.log(res);
+    });
   }
 
   alreadyUser(event) {
@@ -75,7 +88,7 @@ class Register extends React.Component {
             <input type="password" id="confirmPw" className="registerField" value={this.state.confirmPw} onChange={this.updateConfirmPw} />
             <input type="submit" value="ENTER" className="registerSubmit"/>
           </form>
-          <a className="alreadyUser" onClick={this.alreadyUser}>Alredy have an account? Sign in here!</a>
+          <a className="alreadyUser" onClick={this.alreadyUser}>Already have an account? Sign in here!</a>
         </div>
       </div>
     );
