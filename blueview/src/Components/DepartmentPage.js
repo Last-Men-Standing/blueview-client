@@ -51,7 +51,7 @@ class Header extends React.Component {
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {id: "dummy",name: "dummy", address:"dummy", zipcode: "", overall_rating:""};
+    this.state = {id: "dummy",name: "South Glens Falls Police Department", address:"5 W Marion Ave, South Glens Falls, NY", zipcode: "", overall_rating:""};
     
   }
   
@@ -104,30 +104,21 @@ class NewPost extends React.Component {
     this.state = {
       title: '',
       date: '',
-      text: ''
+      text: '',
+      attitude: '',
+      communication: '',
+      efficiency: '',
+      fairness: '',
+      safety: ''
     }
 
-    this.changeTitle = this.changeTitle.bind(this);
-    this.changeDate = this.changeDate.bind(this);
-    this.changeText = this.changeText.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  changeTitle(event) {
+  handleChange(event) {
     this.setState({
-      title: event.target.value
-    });
-  }
-
-  changeDate(event) {
-    this.setState({
-      date: event.target.value
-    });
-  }
-
-  changeText(event) {
-    this.setState({
-      text: event.target.value
+      [event.target.name]: event.target.value
     });
   }
 
@@ -136,24 +127,66 @@ class NewPost extends React.Component {
     alert("Title: " + this.state.title +
           "\nDate: " + this.state.date +
           "\nText: " + this.state.text);
+
+    this.props.cancelPost(); // Hide new post form
   }
 
   render() {
     return (
       <div className="newPostContainer">
         <form onSubmit={this.handleSubmit}>
-          <div className="newPostInfo">
+          <div className="newPostRow">
             <div className="newPostItem">
               <label className="newPostLabel">Title:</label>
-              <input className="newPostTitle" type="text" onChange={this.changeTitle} />
+              <input className="newPostTitle" type="text" value={this.state.title} name="title" onChange={this.handleChange} />
             </div>
+
             <div className="newPostItem">
               <label className="newPostLabel">Date of event:</label>
-              <input className="newPostDate" type="date" onChange={this.changeDate} />
+              <input className="newPostDate" type="date" name="date" onChange={this.handleChange} />
+            </div>
+
+            <div className="newPostItem">
+              <label className="newPostLabel">Tag:</label>
+              <select className="newPostTag" type="select" name="tag" onChange={this.handleChange}>
+                <option value="Traffic Stop">Traffic Stop</option>
+                <option value="Emergency Response">Emergency Response</option>
+                <option value="Noise Complaint">Noise Complaint</option>
+                <option value="Domestic Dispute">Domestic Call</option>
+              </select>
             </div>
           </div>
+
+          
           <label className="newPostLabel">Post text:</label>
-          <textarea className="newPostText" value={this.state.text} onChange={this.changeText} />
+          <textarea className="newPostText" value={this.state.text} name="text" onChange={this.handleChange} />
+
+          <div className="ratingRow">
+            <div className="newPostItem">
+              <label className="ratingLabel">Attitude:</label>
+              <input className="ratingEntry" type="number" min="1" max="5" value={this.state.attitude} name="attitude" onChange={this.handleChange} />
+            </div>
+            <div className="newPostItem">
+              <label className="ratingLabel">Communication:</label>
+              <input className="ratingEntry" type="number" min="1" max="5" value={this.state.communication} name="communication" onChange={this.handleChange} />
+            </div>
+            <div className="newPostItem">
+              <label className="ratingLabel">Efficiency:</label>
+              <input className="ratingEntry" type="number" min="1" max="5" value={this.state.efficiency} name="efficiency" onChange={this.handleChange} />
+            </div>
+          </div>
+
+          <div className="ratingRow">
+            <div className="newPostItem">
+              <label className="ratingLabel">Fairness:</label>
+              <input className="ratingEntry" type="number" min="1" max="5" value={this.state.fairness} name="fairness" onChange={this.handleChange} />
+            </div>
+            <div className="newPostItem">
+              <label className="ratingLabel">Safety:</label>
+              <input className="ratingEntry" type="number" min="1" max="5" value={this.state.safety} name="safety" onChange={this.handleChange} />
+            </div>
+          </div>
+
           <div className="newPostControls">
             <button className="cancelPost" onClick={this.props.cancelPost}>Cancel</button>
             <input className="submitPost" type="submit" value="Post" />
@@ -170,12 +203,13 @@ class PostFeed extends React.Component {
 
     this.state = {
       creatingPost: false,
-      posts: [],
+      posts: []
     }
 
     this.showNewPost = this.showNewPost.bind(this);
     this.cancelPost = this.cancelPost.bind(this);
   }
+
   componentDidMount() {
     axios.get(`${baseUrl}/department/${this.props.id}/post/all`)
       .then(res => {
@@ -183,7 +217,7 @@ class PostFeed extends React.Component {
         console.log("PostFeed Mount");
         console.log(data);
         this.setState({posts: data});
-      })
+      });
   }
 
   showNewPost() {
@@ -198,16 +232,26 @@ class PostFeed extends React.Component {
     });
   }
 
+  /*
+  {posts.map(post => (
+          <Post title={post.title} date={post.date} 
+          user={post.user} text={post.text}  />
+        ))}
+        */
+
   render() {
     const { posts } = this.state;
     return (
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} />)}
-        {posts.map(post => (
-          <Post title={post.title} date={post.date} 
-          user={post.user} text={post.text}  />
-        ))}
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
       </div>
     );
   }

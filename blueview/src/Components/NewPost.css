@@ -2,11 +2,11 @@
   margin-top: 10px;
 }
 
-.newPostLabel {
+.newPostLabel, .ratingLabel {
   font-family: Calibri;
 }
 
-.newPostInfo {
+.newPostRow {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 10px;
@@ -14,17 +14,48 @@
 
 .newPostTitle {
   height: 18px;
-  width: 300px;
+  width: 220px;
   margin-right: 15px;
   padding: 1px 3px;
 }
+
+.newPostDate {
+  margin-right: 15px;
+  width: 125px;
+}
+
+.newPostTag {
+  height: 24px;
+  width: 164px;
+  padding: 1px 3px;
+}
+
+/* ADD THIS LATER */
+/* https://www.npmjs.com/package/react-textarea-autosize */
 
 .newPostText {
   width: 100%;
   box-sizing: border-box;
 }
 
-.newPostTitle, .newPostDate, .newPostText {
+.ratingRow {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.ratingLabel {
+  display: inline-block;
+}
+
+.ratingEntry {
+  display: inline-block;
+  width: 30px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.newPostTitle, .newPostDate, .newPostTag, .newPostText, .ratingEntry {
   border: 2px solid #DDD;
   border-radius: 3px;
   box-shadow: 0 0 8px -1px #DDD;
@@ -40,7 +71,7 @@
 }
 
 .newPostControls {
-  padding-top: 6px;
+  padding-top: 13px;
   display: flex;
   justify-content: flex-end;
 }
@@ -73,4 +104,6 @@
 
   background-color: #BFEFFF;
   box-shadow: 0 0 8px -1px #DDD;
+
+  outline: none;
 }

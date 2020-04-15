@@ -13,20 +13,24 @@ class Post extends React.Component {
       text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.'
     }
   }
+  /* This is unnecessary. Grab the prop directly when you render.
   componentDidMount() {
     this.setState({user: this.props.user});
     this.setState({date: this.props.date});
     this.setState({title: this.props.title});
     this.setState({text: this.props.text});
   }
+  */
+
+
   // VERSION USING STATE
   render() {
     return (
       <div className="postBox">
-        <p className="postInfo">
+        <div className="postInfo">
            <span className="postTitle">{this.state.title}</span> on {this.state.date}
            <a className="userName">{this.state.user}</a>
-        </p>
+        </div>
         <p className="postBody">
           {this.state.text}
         </p>
@@ -34,7 +38,8 @@ class Post extends React.Component {
     );
   }
   
-  
+  // VERSION USING PROPS
+
   // render() {
   //   return (
   //     <div className="postBox">
