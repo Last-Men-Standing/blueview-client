@@ -59,7 +59,7 @@ Top of page -----------------------
   top: 0;
   position: fixed;
   width: 100%;
-  padding: 95px 0 15px 0;
+  padding-bottom: 15px;
   margin-bottom: 15px;
   border-bottom: 2px solid #DDD;
   background-color: #FCFCFC;
@@ -69,7 +69,7 @@ Top of page -----------------------
 }
 
 .departmentName {
-  margin: 0;
+  margin: 95px 0 0 0;
 
   font-family: 'Roboto';
   color: #0D4F8B;
@@ -82,6 +82,30 @@ Top of page -----------------------
   font-family: 'Asap';
   font-size: 15px;
   color: #888;
+}
+
+.nameAddress {
+  float: left;
+}
+
+.ratingsContainer {
+  float: right;
+  width: 150px;
+  margin-top: 45px;
+}
+
+.rating {
+  margin: 2px 0 0 0;
+  font-family: 'Asap';
+  font-weight: bold;
+  font-size: 13px;
+  color: #888;
+
+}
+
+.ratingNumber {
+  float: right;
+  color: #2686DE;
 }
 
 /*

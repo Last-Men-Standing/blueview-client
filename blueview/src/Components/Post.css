@@ -29,12 +29,18 @@
 .userName {
     font-weight: bold;
     color: #2686DE;
-    float: right;
 }
 
 .userName:hover {
     cursor: pointer;
     color: #0D4F8B;
+    transition: 0.1s;
+}
+
+.postTag {
+    font-weight: bold;
+    float: right;
+    color: #FF6347;
 }
 
 .postBody {
@@ -43,4 +49,139 @@
     color: #444;
 
     word-wrap: break-word;
+}
+
+.postControls {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 5px;
+    padding-top: 4px;
+    border-top: solid 2px #F3F3F3;
+}
+
+.postControls p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #AAA;
+    cursor: pointer;
+}
+
+.postRatingsBody {
+    margin: 3px 5px;
+    padding-top: 4px;
+    border-top: solid 2px #F3F3F3;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.postRatingContainer {
+    width: 120px;
+}
+
+.rating {
+    margin: 2px 0 0 0;
+    font-family: 'Asap';
+    font-weight: bold;
+    font-size: 13px;
+    color: #888;
+}
+  
+.ratingNumber {
+    float: right;
+    color: #2686DE;
+}
+
+
+
+
+.replyFeedBody {
+    margin: 3px 5px 0 5px;
+    border-top: solid 2px #F3F3F3;
+}
+
+.replyFeedHeader {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.replyFeedHeaderLabel {
+    color: #666;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.startReply {
+    font-weight: bold;
+    color: #32CD32;  /* Overridden somewhere without !important */
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.newReplyText {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-bottom: 4px;
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    box-shadow: 0 0 8px -2px #DDD;
+    background-color: #FCFCFC;
+    font-family: 'Asap';
+
+    outline: none;
+}
+
+.replyBody {
+    margin-bottom: 6px;
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    box-shadow: 0 0 8px -2px #DDD;
+    background-color: #FCFCFC;
+}
+
+.newReplyControls * {
+    display: inline;
+}
+
+.newReplyControls {
+    margin-bottom: 10px;
+    padding-right: 3px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cancelReply {
+    height: 22px;
+
+    cursor: pointer;
+    border: 2px solid #DDD;
+    border-radius: 2px;
+
+    font-family: 'Asap';
+    font-size: 12px;
+    color: #666;
+
+    box-shadow: 0 0 8px -1px #DDD;
+}
+
+.submitReply {
+    height: 22px;
+    width: 60px;
+    margin-left: 10px;
+
+    cursor: pointer;
+    border: 2px solid #2686DE;
+    border-radius: 2px;
+
+    font-family: 'Asap';
+    font-size: 12px;
+    color: #2686DE;
+    font-weight: bold;
+
+    background-color: #BFEFFF;
+    box-shadow: 0 0 8px -1px #DDD;
+
+    outline: none;
 }

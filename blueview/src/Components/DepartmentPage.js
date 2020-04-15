@@ -48,6 +48,29 @@ class Header extends React.Component {
   }
 }
 
+class DepartmentRatings extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {    // REPLACE WITH PROPS WHEN IMPLEMENTED
+      testnumber: 4.3
+    }
+  }
+
+  render() {
+    return (
+      <div className="ratingsContainer">
+        <p className="rating">Attitude: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Communication: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Efficiency: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Fairness: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Safety: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Overall: <span className="ratingNumber">{this.state.testnumber}</span></p>
+      </div>
+    );
+  }
+}
+
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -72,9 +95,12 @@ class DepartmentHeader extends React.Component {
     return (
       <div className="departmentHeaderMain">
         <div className="centerBox">
-          <h1 className="departmentName">{this.state.name}</h1>
-          <h2 className="departmentAddress">{this.state.address}</h2>
+          <div className="nameAddress">
+            <h1 className="departmentName">{this.state.name}</h1>
+            <h2 className="departmentAddress">{this.state.address}</h2>
+          </div>
           {/* <h3 className="id">{this.state.id}</h3> */}
+          <DepartmentRatings />
         </div>
       </div>
     );
@@ -231,10 +257,6 @@ class PostFeed extends React.Component {
       creatingPost: false
     });
   }
-
-  /*
-  
-        */
 
   render() {
     const { posts } = this.state;
