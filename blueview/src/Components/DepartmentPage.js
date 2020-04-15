@@ -233,10 +233,7 @@ class PostFeed extends React.Component {
   }
 
   /*
-  {posts.map(post => (
-          <Post title={post.title} date={post.date} 
-          user={post.user} text={post.text}  />
-        ))}
+  
         */
 
   render() {
@@ -245,13 +242,10 @@ class PostFeed extends React.Component {
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} />)}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {posts.map(post => (
+          <Post title={post.title} date={post.date} 
+          user={post.user} text={post.text}  />
+        ))}
       </div>
     );
   }

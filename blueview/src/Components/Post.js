@@ -24,6 +24,7 @@ class Post extends React.Component {
 
 
   // VERSION USING STATE
+  /*
   render() {
     return (
       <div className="postBox">
@@ -37,22 +38,22 @@ class Post extends React.Component {
       </div>
     );
   }
-  
-  // VERSION USING PROPS
+  */
 
-  // render() {
-  //   return (
-  //     <div className="postBox">
-  //       <p className="postInfo">
-  //         <span className="postTitle">{this.props.title}</span> on {this.props.date}
-  //         <a className="userName">{this.props.user}</a>
-  //       </p>
-  //       <p className="postBody">
-  //         {this.props.text}
-  //       </p>
-  //     </div>
-  //   );
-  // }
+
+  render() {
+    return (
+      <div className="postBox">
+        <p className="postInfo">
+          <span className="postTitle">{this.props.title}</span> on {this.props.date}
+          <a className="userName">{this.props.user}</a>
+        </p>
+        <p className="postBody">
+          {this.props.text}
+        </p>
+      </div>
+    );
+  }
 }
 
 export default Post;
