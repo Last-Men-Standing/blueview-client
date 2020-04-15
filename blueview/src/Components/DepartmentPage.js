@@ -153,7 +153,9 @@ class NewPost extends React.Component {
     alert("Title: " + this.state.title +
           "\nDate: " + this.state.date +
           "\nText: " + this.state.text);
-
+    // TODO: Handle submit of post
+    //axios.post(`${baseUrl}/account/post`, {
+    //}
     this.props.cancelPost(); // Hide new post form
   }
 

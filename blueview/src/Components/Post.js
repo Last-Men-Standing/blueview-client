@@ -80,7 +80,7 @@ class NewReply extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert("Text: " + this.state.text);
-
+    console.log("This is it?")
     this.props.cancelReply(); // Hide new post form
   }
 

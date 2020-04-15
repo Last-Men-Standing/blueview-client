@@ -38,7 +38,7 @@ class Register extends React.Component {
       password_2: this.state.confirmPw
     }).then(res => {
       console.log(res);
-      // TODO: Redirect to login page
+      this.setState({toSignIn: true});
     }).catch(error => {
       this.setState({ errors: error.response.data.errors });
     });

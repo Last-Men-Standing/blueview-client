@@ -27,9 +27,18 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
-    // TODO: Handle Signin verification and whatnot
-    this.setState({loggedIn: true})
-    this.setState({toZipSearch: true});
+    axios.post(`${baseUrl}/account/login`, {
+      username: this.state.username,
+      password: this.state.password
+    }).then(res=>{
+      alert('Successfully logged in as user ' + this.state.username);
+      this.setState({loggedIn: true});
+      this.setState({toZipSearch: true});
+    }).catch(error =>{
+      //TODO: Handle incorrect user and password
+      alert('How about trying a username and password that actually exist\nDipshit');
+    });
+    //TODO: Cleanup?
   }
 
   notUser(event) {
