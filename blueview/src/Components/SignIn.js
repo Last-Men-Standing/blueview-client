@@ -8,7 +8,7 @@ import axios from 'axios';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '',toZipSearch: false,toRegister: false}
+    this.state = {username: '', password: '', loggedIn: false,toZipSearch: false,toRegister: false}
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -27,6 +27,8 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
+    // TODO: Handle Signin verification and whatnot
+    this.setState({loggedIn: true})
     this.setState({toZipSearch: true});
   }
 

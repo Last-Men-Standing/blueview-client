@@ -1,6 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './Register.css';
+import { Redirect } from 'react-router-dom'
 import baseUrl from '../Utils/config';
 import axios from 'axios';
 
@@ -13,7 +14,8 @@ class Register extends React.Component {
       username: '',
       password: '',
       confirmPw: '',
-      errors: {}
+      errors: {},
+      toSignIn: false
     }
 
     this.onUpdate = this.onUpdate.bind(this);
@@ -36,6 +38,7 @@ class Register extends React.Component {
       password_2: this.state.confirmPw
     }).then(res => {
       console.log(res);
+      // TODO: Redirect to login page
     }).catch(error => {
       this.setState({ errors: error.response.data.errors });
     });
@@ -43,10 +46,16 @@ class Register extends React.Component {
 
   alreadyUser(event) {
     alert("Already a user!");
+    this.setState({toSignIn: true});
   }
 
   render() {
     const { errors } = this.state;
+    const { toSignIn } = this.state;
+    const p = '/';
+    if(toSignIn){
+      return <Redirect to={p}/>
+    }
     return (
       <div className="main">
         <div className="registerContainer">

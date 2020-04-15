@@ -8,9 +8,9 @@ import './NewPost.css';
 class Header extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loggedIn: false
+      //TODO: Need to find a way for login to be derived from register
     }
 
     this.search = this.search.bind(this);
