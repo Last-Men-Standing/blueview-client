@@ -54,19 +54,36 @@ class DepartmentRatings extends React.Component {
     super(props);
 
     this.state = {    // REPLACE WITH PROPS WHEN IMPLEMENTED
-      testnumber: 4.3
+      attitude: 4.3,
+      communication: 4.3,
+      efficiency: 4.3,
+      fairness: 4.3,
+      safety: 4.3,
     }
   }
-
+  componentDidMount() {
+    axios.get(`${baseUrl}/department/${this.props.id}/rating`)
+      .then(res => {
+        const data = res.data.rating;
+        console.log("DeptRating Mount");
+        console.log(data);
+        this.setState({attitude: data.attitude});
+        this.setState({communication: data.communication});
+        this.setState({efficiency: data.efficiency});
+        this.setState({fairness: data.fairness});
+        this.setState({safety: data.safety});
+        this.setState({overall: data.overall});
+      });
+  }
   render() {
     return (
       <div className="ratingsContainer">
-        <p className="rating">Attitude: <span className="ratingNumber">{this.state.testnumber}</span></p>
-        <p className="rating">Communication: <span className="ratingNumber">{this.state.testnumber}</span></p>
-        <p className="rating">Efficiency: <span className="ratingNumber">{this.state.testnumber}</span></p>
-        <p className="rating">Fairness: <span className="ratingNumber">{this.state.testnumber}</span></p>
-        <p className="rating">Safety: <span className="ratingNumber">{this.state.testnumber}</span></p>
-        <p className="rating">Overall: <span className="ratingNumber">{this.state.testnumber}</span></p>
+        <p className="rating">Attitude: <span className="ratingNumber">{this.state.attitude}</span></p>
+        <p className="rating">Communication: <span className="ratingNumber">{this.state.communication}</span></p>
+        <p className="rating">Efficiency: <span className="ratingNumber">{this.state.efficiency}</span></p>
+        <p className="rating">Fairness: <span className="ratingNumber">{this.state.fairness}</span></p>
+        <p className="rating">Safety: <span className="ratingNumber">{this.state.safety}</span></p>
+        <p className="rating">Overall: <span className="ratingNumber">{this.state.overall}</span></p>
       </div>
     );
   }
@@ -101,7 +118,7 @@ class DepartmentHeader extends React.Component {
             <h2 className="departmentAddress">{this.state.address}</h2>
           </div>
           {/* <h3 className="id">{this.state.id}</h3> */}
-          <DepartmentRatings />
+          <DepartmentRatings id= {this.props.id}/>
         </div>
       </div>
     );
