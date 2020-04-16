@@ -171,8 +171,8 @@ class NewPost extends React.Component {
       safety:this.state.safety
     },config).then(res=>{
       alert("New Post Created Successfully");
-      console.log("Successful Post! Check DB");
-      console.log(res)
+      console.log("Successful Post!");
+      console.log(res);
       //TODO: Handle success
     }).catch(error=>{
       //TODO: handle error
@@ -292,7 +292,7 @@ class PostFeed extends React.Component {
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
           <Post title={post.title} date={post.date} 
-          user={post.user} text={post.text}  />
+          user={post.user} text={post.body}  />
         ))}
       </div>
     );

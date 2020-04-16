@@ -81,6 +81,7 @@ class NewReply extends React.Component {
     event.preventDefault();
     alert("Text: " + this.state.text);
     console.log("This is it?")
+    //TODO: Create and add new reply
     this.props.cancelReply(); // Hide new post form
   }
 
@@ -160,14 +161,13 @@ class Post extends React.Component {
   
   /* I think this is unnecessary. You should be able to grab the props directly in render()
      Ideally state will only be used for the mutable aspects of the component, like the visibility booleans
-
+  */
   componentDidMount() {
     this.setState({user: this.props.user});
     this.setState({date: this.props.date});
     this.setState({title: this.props.title});
     this.setState({text: this.props.text});
   }
-  */
 
   toggleRatings() {
     var current = this.state.ratingsVisible;
@@ -179,7 +179,7 @@ class Post extends React.Component {
 
   toggleReplies() {
     var current = this.state.repliesVisible;
-
+    //TODO: Fetch replies
     this.setState({
       repliesVisible: !current
     });
