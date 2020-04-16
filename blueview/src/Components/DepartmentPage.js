@@ -10,7 +10,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: true
       //TODO: Need to find a way for login to be derived from register
     }
 
@@ -67,12 +67,12 @@ class DepartmentRatings extends React.Component {
         const data = res.data.rating;
         console.log("DeptRating Mount");
         console.log(data);
-        this.setState({attitude: data.attitude});
-        this.setState({communication: data.communication});
-        this.setState({efficiency: data.efficiency});
-        this.setState({fairness: data.fairness});
-        this.setState({safety: data.safety});
-        this.setState({overall: data.overall});
+        this.setState({attitude: data.attitude.toFixed(2)});
+        this.setState({communication: data.communication.toFixed(2)});
+        this.setState({efficiency: data.efficiency.toFixed(2)});
+        this.setState({fairness: data.fairness.toFixed(2)});
+        this.setState({safety: data.safety.toFixed(2)});
+        this.setState({overall: data.overall.toFixed(2)});
       });
   }
   render() {
@@ -178,14 +178,14 @@ class NewPost extends React.Component {
     const params =  {params:{id:this.props.department_id}};
     axios.post(`${baseUrl}/department/${this.props.department_id}/post/create`, {
       id:this.props.department_id,
-      incident_date: this.state.date,
+      created_at: this.state.date,
       title:this.state.title,
       body: this.state.text,
-      attitude: this.state.attitude,
-      communication:this.state.communication,
-      efficiency:this.state.efficiency,
-      fairness:this.state.fairness,
-      safety:this.state.safety
+      attitude: parseInt(this.state.attitude),
+      communication:parseInt(this.state.communication),
+      efficiency:parseInt(this.state.efficiency),
+      fairness:parseInt(this.state.fairness),
+      safety:parseInt(this.state.safety)
     },config).then(res=>{
       alert("New Post Created Successfully");
       console.log("Successful Post!");
@@ -308,8 +308,8 @@ class PostFeed extends React.Component {
         <PostControls showNewPost={this.showNewPost} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
-          <Post title={post.title} date={post.date} 
-          user={post.user} text={post.body}  />
+          <Post title={post.title} date={post.created_at.substring(0,post.created_at.indexOf('T'))} 
+          user={post.user_id} text={post.body} id={post.id} />
         ))}
       </div>
     );
