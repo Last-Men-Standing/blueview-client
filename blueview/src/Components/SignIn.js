@@ -32,11 +32,13 @@ class SignIn extends React.Component {
       password: this.state.password
     }).then(res=>{
       alert('Successfully logged in as user ' + this.state.username);
+      localStorage.setItem('jwt-token',res.data.credentials.split(' ')[1]);
+      console.log(res.data.credentials);
       this.setState({loggedIn: true});
       this.setState({toZipSearch: true});
     }).catch(error =>{
       //TODO: Handle incorrect user and password
-      alert('How about trying a username and password that actually exist\nDipshit');
+      alert('How about trying a username and password that actually exist');
     });
     //TODO: Cleanup?
   }

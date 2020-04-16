@@ -4,6 +4,7 @@ import baseUrl from '../Utils/config'
 import axios from 'axios';
 import './DepartmentPage.css';
 import './NewPost.css';
+import qs from 'qs';
 
 class Header extends React.Component {
   constructor(props) {
@@ -150,15 +151,33 @@ class NewPost extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     alert("Title: " + this.state.title +
           "\nDate: " + this.state.date +
           "\nText: " + this.state.text);
-    axios.post(`${baseUrl}/${this.props.id}/account/post`, {
-      //TODO: Need JWT here
-    }).then(res=>{
+    const token = localStorage.getItem('jwt-token');
+
+    const config = {headers: {'authorization': `Bearer ${token}`}};
+    const params =  {params:{id:this.props.department_id}};
+    axios.post(`${baseUrl}/department/${this.props.department_id}/post/create`, {
+      id:this.props.department_id,
+      incident_date: this.state.date,
+      title:this.state.title,
+      body: this.state.text,
+      attitude: this.state.attitude,
+      communication:this.state.communication,
+      efficiency:this.state.efficiency,
+      fairness:this.state.fairness,
+      safety:this.state.safety
+    },config).then(res=>{
+      alert("New Post Created Successfully");
+      console.log("Successful Post! Check DB");
+      console.log(res)
       //TODO: Handle success
     }).catch(error=>{
       //TODO: handle error
+      console.log(error);
+      alert("Error Creating Post");
     });
     this.props.cancelPost(); // Hide new post form
   }
@@ -267,9 +286,10 @@ class PostFeed extends React.Component {
   render() {
     const { posts } = this.state;
     return (
+      // Parent of NewPost
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
-        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} />)}
+        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
           <Post title={post.title} date={post.date} 
           user={post.user} text={post.text}  />
@@ -285,6 +305,7 @@ class DepartmentContent extends React.Component {
   }
 
   render() {
+    // Parent of PostFeed
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
@@ -300,6 +321,8 @@ class DepartmentPage extends React.Component {
     super(props);
   }
   render() {
+    // Parent of DepartmentContent
+    console.log(this.props);
     return (
       <div className="departmentPageMain">
         <Header />

@@ -44,8 +44,8 @@ class Register extends React.Component {
       console.log("Signing In");
       console.log(res);
       this.setState({toSignIn: true});
-      console.log("Token:",res.data.credentials);
-      localStorage.setItem('jwt-token',res.data.credentials);
+      console.log("Token:",res.data.credentials.split(' ')[1]);
+      localStorage.setItem('jwt-token',res.data.credentials.split(' ')[1]);
     }).catch(error => {
       console.log("Sign In Error");
       console.log(error);
