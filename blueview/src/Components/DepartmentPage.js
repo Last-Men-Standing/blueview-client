@@ -153,9 +153,13 @@ class NewPost extends React.Component {
     alert("Title: " + this.state.title +
           "\nDate: " + this.state.date +
           "\nText: " + this.state.text);
-    // TODO: Handle submit of post
-    //axios.post(`${baseUrl}/account/post`, {
-    //}
+    axios.post(`${baseUrl}/${this.props.id}/account/post`, {
+      //TODO: Need JWT here
+    }).then(res=>{
+      //TODO: Handle success
+    }).catch(error=>{
+      //TODO: handle error
+    });
     this.props.cancelPost(); // Hide new post form
   }
 
