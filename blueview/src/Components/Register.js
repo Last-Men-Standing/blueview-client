@@ -9,13 +9,14 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       username: '',
       password: '',
-      confirmPw: '',
+      password_2: '',
       errors: {},
-      toSignIn: false
+      toSignIn: false,
+      token: localStorage.getItem('jwt-token') || '',
     }
 
     this.onUpdate = this.onUpdate.bind(this);
@@ -27,20 +28,29 @@ class Register extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
 
+  
+  
   handleSubmit(event) {
     event.preventDefault();
-
+    console.log("Submitting");
+    console.log(this.state);
     axios.post(`${baseUrl}/account/register`, {
-      first_name: this.state.firstName,
-      last_name: this.state.lastName,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
       username: this.state.username,
       password: this.state.password,
-      password_2: this.state.confirmPw
+      password_2: this.state.password_2
     }).then(res => {
+      console.log("Signing In");
       console.log(res);
       this.setState({toSignIn: true});
+      console.log("Token:",res.data.credentials);
+      localStorage.setItem('jwt-token',res.data.credentials);
     }).catch(error => {
-      this.setState({ errors: error.response.data.errors });
+      console.log("Sign In Error");
+      console.log(error);
+      this.setState({ errors: error });
+      
     });
   }
 
@@ -62,16 +72,16 @@ class Register extends React.Component {
           <h1 className="registerTitle">BlueView</h1>
           <h2 className="registerSubtitle">Create Account</h2>
           <form onSubmit={this.handleSubmit}>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" className="registerField" value={this.state.firstName} onChange={this.onUpdate} />
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" className="registerField" value={this.state.lastName} onChange={this.onUpdate} />
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" className="registerField" value={this.state.first_name} onChange={this.onUpdate} />
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" className="registerField" value={this.state.last_name} onChange={this.onUpdate} />
             <label for="username">Username:</label>
             <input type="text" id="username" className="registerField" value={this.state.username} onChange={this.onUpdate} />
             <label for="password">Password:</label>
             <input type="password" id="password" className="registerField" value={this.state.password} onChange={this.onUpdate} />
-            <label for="confirmPw">Confirm Password:</label>
-            <input type="password" id="confirmPw" className="registerField" value={this.state.confirmPw} onChange={this.onUpdate} />
+            <label for="password_2">Confirm Password:</label>
+            <input type="password" id="password_2" className="registerField" value={this.state.password_2} onChange={this.onUpdate} />
             <input type="submit" value="ENTER" className="registerSubmit" />
           </form>
           <a className="alreadyUser" onClick={this.alreadyUser}>Already have an account? Sign in here!</a>
