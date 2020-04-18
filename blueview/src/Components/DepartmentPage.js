@@ -67,12 +67,12 @@ class DepartmentRatings extends React.Component {
         const data = res.data.rating;
         console.log("DeptRating Mount");
         console.log(data);
-        this.setState({attitude: data.attitude.toFixed(2)});
-        this.setState({communication: data.communication.toFixed(2)});
-        this.setState({efficiency: data.efficiency.toFixed(2)});
-        this.setState({fairness: data.fairness.toFixed(2)});
-        this.setState({safety: data.safety.toFixed(2)});
-        this.setState({overall: data.overall.toFixed(2)});
+        this.setState({ attitude: data.attitude.toFixed(2) });
+        this.setState({ communication: data.communication.toFixed(2) });
+        this.setState({ efficiency: data.efficiency.toFixed(2) });
+        this.setState({ fairness: data.fairness.toFixed(2) });
+        this.setState({ safety: data.safety.toFixed(2) });
+        this.setState({ overall: data.overall.toFixed(2) });
       });
   }
   render() {
@@ -92,19 +92,19 @@ class DepartmentRatings extends React.Component {
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {id: "dummy",name: "South Glens Falls Police Department", address:"5 W Marion Ave, South Glens Falls, NY", zipcode: "", overall_rating:""};
-    
+    this.state = { id: "dummy", name: "South Glens Falls Police Department", address: "5 W Marion Ave, South Glens Falls, NY", zipcode: "", overall_rating: "" };
+
   }
-  
-  
+
+
   componentDidMount() {
     axios.get(`${baseUrl}/department/${this.props.id}`)
       .then(res => {
         const data = res.data.department[0]
         console.log(data);
-        this.setState({id: this.props.id});
-        this.setState({name: data.name});
-        this.setState({address: data.address});
+        this.setState({ id: this.props.id });
+        this.setState({ name: data.name });
+        this.setState({ address: data.address });
         // return {id: this.props.id, name: data.name, address: data.address};
       })
   }
@@ -118,7 +118,7 @@ class DepartmentHeader extends React.Component {
             <h2 className="departmentAddress">{this.state.address}</h2>
           </div>
           {/* <h3 className="id">{this.state.id}</h3> */}
-          <DepartmentRatings id= {this.props.id}/>
+          <DepartmentRatings id={this.props.id} />
         </div>
       </div>
     );
@@ -170,28 +170,28 @@ class NewPost extends React.Component {
     event.preventDefault();
 
     alert("Title: " + this.state.title +
-          "\nDate: " + this.state.date +
-          "\nText: " + this.state.text);
+      "\nDate: " + this.state.date +
+      "\nText: " + this.state.text);
     const token = localStorage.getItem('jwt-token');
 
-    const config = {headers: {'authorization': `Bearer ${token}`}};
-    const params =  {params:{id:this.props.department_id}};
+    const config = { headers: { 'authorization': `Bearer ${token}` } };
+    const params = { params: { id: this.props.department_id } };
     axios.post(`${baseUrl}/department/${this.props.department_id}/post/create`, {
-      id:this.props.department_id,
       created_at: this.state.date,
-      title:this.state.title,
+      title: this.state.title,
       body: this.state.text,
+      incident_date: this.state.date,
       attitude: parseInt(this.state.attitude),
-      communication:parseInt(this.state.communication),
-      efficiency:parseInt(this.state.efficiency),
-      fairness:parseInt(this.state.fairness),
-      safety:parseInt(this.state.safety)
-    },config).then(res=>{
+      communication: parseInt(this.state.communication),
+      efficiency: parseInt(this.state.efficiency),
+      fairness: parseInt(this.state.fairness),
+      safety: parseInt(this.state.safety)
+    }, config).then(res => {
       alert("New Post Created Successfully");
       console.log("Successful Post!");
       console.log(res);
       //TODO: Handle success
-    }).catch(error=>{
+    }).catch(error => {
       //TODO: handle error
       console.log(error);
       alert("Error Creating Post");
@@ -225,7 +225,7 @@ class NewPost extends React.Component {
             </div>
           </div>
 
-          
+
           <label className="newPostLabel">Post text:</label>
           <textarea className="newPostText" value={this.state.text} name="text" onChange={this.handleChange} />
 
@@ -284,7 +284,7 @@ class PostFeed extends React.Component {
         const data = res.data.department_posts;
         console.log("PostFeed Mount");
         console.log(data);
-        this.setState({posts: data});
+        this.setState({ posts: data });
       });
   }
 
@@ -306,10 +306,10 @@ class PostFeed extends React.Component {
       // Parent of NewPost
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
-        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
+        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id} />)}
         {posts.map(post => (
-          <Post title={post.title} date={post.created_at.substring(0,post.created_at.indexOf('T'))} 
-          user={post.user_id} text={post.body} id={post.id} />
+          <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))}
+            user={post.user_id} text={post.body} id={post.id} />
         ))}
       </div>
     );
@@ -326,7 +326,7 @@ class DepartmentContent extends React.Component {
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
-          <PostFeed id= {this.props.id}/>
+          <PostFeed id={this.props.id} />
         </div>
       </div>
     );
@@ -343,8 +343,8 @@ class DepartmentPage extends React.Component {
     return (
       <div className="departmentPageMain">
         <Header />
-        <DepartmentHeader id= {this.props.match.params.id} />
-        <DepartmentContent id= {this.props.match.params.id} />
+        <DepartmentHeader id={this.props.match.params.id} />
+        <DepartmentContent id={this.props.match.params.id} />
       </div>
     );
   }
