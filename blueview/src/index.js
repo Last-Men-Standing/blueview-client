@@ -5,10 +5,10 @@ import ReactRouter from './Router/router';
 import * as serviceWorker from './Utils/serviceWorker';
 
 
-ReactDOM.render(<Router>
-
-  <ReactRouter/>
-</Router>
+ReactDOM.render(
+  <Router>
+    <ReactRouter/>
+  </Router>
   ,
   document.getElementById('root'));
 
