@@ -113,3 +113,4 @@ class ReplyFeed extends React.Component {
       );
     }
   }
+export default ReplyFeed;

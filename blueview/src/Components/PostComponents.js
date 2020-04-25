@@ -165,14 +165,14 @@ class PostRatings extends React.Component {
       return (
         <div className="postRatingsBody">
           <div className="postRatingContainer">
-            <p className="rating">Attitude: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
-            <p className="rating">Communication: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
-            <p className="rating">Efficiency: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
+            <p className="rating">Attitude: <span className="ratingNumber">{this.props.attitude}</span></p>
+            <p className="rating">Communication: <span className="ratingNumber">{this.props.communication}</span></p>
+            <p className="rating">Efficiency: <span className="ratingNumber">{this.props.efficiency}</span></p>
           </div>
           <div className="postRatingContainer">
-            <p className="rating">Fairness: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
-            <p className="rating">Safety: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
-            <p className="rating">Overall: <span className="ratingNumber">{this.state.placeholderRating}</span></p>
+            <p className="rating">Fairness: <span className="ratingNumber">{this.props.fairness}</span></p>
+            <p className="rating">Safety: <span className="ratingNumber">{this.props.safety}</span></p>
+            <p className="rating">Overall: <span className="ratingNumber">{this.props.overall}</span></p>
           </div>
         </div>
       );
@@ -205,6 +205,7 @@ class Post extends React.Component {
       this.setState({date: this.props.date});
       this.setState({title: this.props.title});
       this.setState({text: this.props.text});
+
   
       axios.get(`${baseUrl}/department/${this.props.id}/post/${this.props.id}/replies`).then(res=>{
         console.log("ahhhhh");
@@ -230,7 +231,7 @@ class Post extends React.Component {
       });
     }
   
-      // Consists of a header with post information, a body, a ratings section, and replies.
+  // Consists of a header with post information, a body, a ratings section, and replies.
   // PostRatings and ReplyFeed are conditionally rendered based on the state of ratingsVisible
   // and repliesVisible respectively.
     render() {
@@ -247,7 +248,8 @@ class Post extends React.Component {
             {this.state.text}
           </p>
   
-          {this.state.ratingsVisible && (<PostRatings />)}
+          {this.state.ratingsVisible && (<PostRatings attitude={this.props.attitude} communication={this.props.communication}
+          efficiency={this.props.efficiency} fairness={this.props.fairness} safety={this.props.safety} overall={this.props.overall}/>)}
           {this.state.repliesVisible && (<ReplyFeed replies={this.state.replies}/>)}
   
           <div className="postControls">
@@ -310,7 +312,8 @@ class Post extends React.Component {
           {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
           {posts.map(post => (
             <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 
-            user={post.user_id} text={post.body} id={post.id}  />
+            user={post.user_id} text={post.body} id={post.id} 
+            attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
           ))}
         </div>
       );
