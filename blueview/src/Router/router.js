@@ -15,7 +15,7 @@ class ReactRouter extends React.Component {
           <Route exact path="/signin" component={SignIn} />
           <Route  path="/post" component={Post} />
           <Route  path="/register" component={Register} />
-          <Route  path="/departmentpage/:id" render ={(props) => <DepartmentPage {...props}/>} />
+          <Route  path="/departmentpage" render ={(props) => <DepartmentPage {...props}/>} />
           <Route  path="/zipsearch" component={ZipSearch} />
         </React.Fragment>
       );

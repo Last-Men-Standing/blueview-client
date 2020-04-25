@@ -6,48 +6,61 @@ import './DepartmentPage.css';
 
 // Topmost header of the page
 class Header extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        loggedIn: true
-        //TODO: Need to find a way for login to be derived from register
-      }
-  
-      this.search = this.search.bind(this);
-      this.signIn = this.signIn.bind(this);
-      this.signOut = this.signOut.bind(this);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedIn: false,
+      zip: ''
     }
-    search(event) {
-      alert("Search");
-    }
-  
-    signIn(event) {
-      alert("Sign In");
-    }
-  
-    signOut(event) {
-      alert("Sign Out");
+    
+    this.handleZipTyping = this.handleZipTyping.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.signOut = this.signOut.bind(this);
+  }
+
+  handleZipTyping(event) {
+    this.setState({
+      zip: event.target.value
+    });
+  }
+
+  handleSearch(event) {
+    event.preventDefault();
+    alert("Search");
+  }
+
+  signIn(event) {
+    alert("Sign In");
+  }
+
+  signOut(event) {
+    alert("Sign Out");
+  }
+
+  // Consists of the logo, a search placeholder, and the sign in/out button (not yet linked)
+  render() {
+    const loggedIn = this.state.loggedIn;
+    let accountControl;
+    if (loggedIn) {
+      accountControl = <a className="signOutButton" onClick={this.signOut}>Sign Out</a>;
+    } else {
+      accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
     }
 
-    // Consists of the logo, a search placeholder, and the sign in/out button (not yet linked)
-    render() {
-      const loggedIn = this.state.loggedIn;
-      let accountControl;
-      if (loggedIn) {
-        accountControl = <a className="signOutButton" onClick={this.signOut}>Sign Out</a>;
-      } else {
-        accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
-      }
-  
-      return (
-        <div className="headerBody">
-          <p className="logo">BlueView</p>
-          <a className="search" onClick={this.search}>Search</a>
-          {accountControl}
-        </div>
-      );
-    }
+    return (
+      <div className="headerBody">
+        <p className="logo">BlueView</p>
+        <form onSubmit={this.handleSearch} className="zipHeaderForm">
+          <input className="zipHeaderField" placeholder="Enter a ZIP code" type="text" value={this.state.zip} name="zipHeaderField" onChange={this.handleZipTyping} />
+          <input className="zipHeaderButton" type="submit" value="GO" />
+        </form>
+        {accountControl}
+      </div>
+    );
   }
+}
 
   // Displays the aggregated ratings for the department
   class DepartmentRatings extends React.Component {
