@@ -1,7 +1,7 @@
 import React from 'react';
 import baseUrl from '../Utils/config'
 import axios from 'axios';
-import PostFeed from 'PostComponents.js';
+import PostFeed from './PostComponents.js';
 import './DepartmentPage.css';
 
 // Topmost header ofor the page

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import DepartmentPage from "../Components/DepartmentPage";
-import Post from "../Components/Post";
+import Post from "../Components/PostComponents";
 import Register from "../Components/Register";
 import SignIn from "../Components/SignIn";
 import ZipSearch from "../Components/ZipSearch";

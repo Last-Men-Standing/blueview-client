@@ -1,5 +1,7 @@
 import React from 'react';
 import ReplyFeed from './ReplyComponents.js';
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 import './DepartmentPage.css';
 import './NewPost.css';
 import './Post.css';
