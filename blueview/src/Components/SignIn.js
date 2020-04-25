@@ -8,7 +8,7 @@ import axios from 'axios';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '',toZipSearch: false,toRegister: false}
+    this.state = {username: '', password: '', loggedIn: false,toZipSearch: false,toRegister: false}
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -27,7 +27,20 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
-    this.setState({toZipSearch: true});
+    axios.post(`${baseUrl}/account/login`, {
+      username: this.state.username,
+      password: this.state.password
+    }).then(res=>{
+      alert('Successfully logged in as user ' + this.state.username);
+      localStorage.setItem('jwt-token',res.data.credentials.split(' ')[1]);
+      console.log(res.data.credentials);
+      this.setState({loggedIn: true});
+      this.setState({toZipSearch: true});
+    }).catch(error =>{
+      //TODO: Handle incorrect user and password
+      alert('How about trying a username and password that actually exist');
+    });
+    //TODO: Cleanup?
   }
 
   notUser(event) {
