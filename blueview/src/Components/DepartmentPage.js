@@ -68,12 +68,14 @@ class Header extends React.Component {
           const data = res.data.rating;
           console.log("DeptRating Mount");
           console.log(data);
-          this.setState({ attitude: data.attitude.toFixed(2) });
-          this.setState({ communication: data.communication.toFixed(2) });
-          this.setState({ efficiency: data.efficiency.toFixed(2) });
-          this.setState({ fairness: data.fairness.toFixed(2) });
-          this.setState({ safety: data.safety.toFixed(2) });
-          this.setState({ overall: data.overall.toFixed(2) });
+          if(data.attitude != null){
+            this.setState({ attitude: data.attitude.toFixed(2) || 4.3});
+            this.setState({ communication: data.communication.toFixed(2) || 4.3});
+            this.setState({ efficiency: data.efficiency.toFixed(2) || 4.3});
+            this.setState({ fairness: data.fairness.toFixed(2) || 4.3});
+            this.setState({ safety: data.safety.toFixed(2) || 4.3});
+            this.setState({ overall: data.overall.toFixed(2) || 4.3});
+          }
         });
     }
     render() {

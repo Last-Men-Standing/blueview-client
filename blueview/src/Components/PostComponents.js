@@ -206,10 +206,7 @@ class Post extends React.Component {
       this.setState({title: this.props.title});
       this.setState({text: this.props.text});
 
-  
-      axios.get(`${baseUrl}/department/${this.props.id}/post/${this.props.id}/replies`).then(res=>{
-        console.log("ahhhhh");
-        console.log(res.data.replies);
+      axios.get(`${baseUrl}/department/${this.props.department_id}/post/${this.props.id}/replies`).then(res=>{
         this.setState({replies: res.data.replies});
       });
     }
@@ -250,7 +247,7 @@ class Post extends React.Component {
   
           {this.state.ratingsVisible && (<PostRatings attitude={this.props.attitude} communication={this.props.communication}
           efficiency={this.props.efficiency} fairness={this.props.fairness} safety={this.props.safety} overall={this.props.overall}/>)}
-          {this.state.repliesVisible && (<ReplyFeed replies={this.state.replies}/>)}
+          {this.state.repliesVisible && (<ReplyFeed replies={this.state.replies} postid={this.props.id} department_id={this.props.department_id}/>)}
   
           <div className="postControls">
             <p className="toggleRatings" onClick={this.toggleRatings}>
@@ -312,7 +309,7 @@ class Post extends React.Component {
           {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
           {posts.map(post => (
             <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 
-            user={post.user_id} text={post.body} id={post.id} 
+            user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
             attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
           ))}
         </div>
