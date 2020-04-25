@@ -306,10 +306,10 @@ class PostFeed extends React.Component {
       // Parent of NewPost
       <div className="postFeedContainer">
         <PostControls showNewPost={this.showNewPost} />
-        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id} />)}
+        {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
-          <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))}
-            user={post.user_id} text={post.body} id={post.id} />
+          <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 
+          user={post.user_id} text={post.body} id={post.id}  />
         ))}
       </div>
     );

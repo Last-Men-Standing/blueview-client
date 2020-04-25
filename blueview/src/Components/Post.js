@@ -1,4 +1,6 @@
 import React from 'react';
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 // import logo from './logo.svg';
 import './Post.css';
@@ -125,6 +127,8 @@ class ReplyFeed extends React.Component {
   }
 
   render() {
+    const {replies} = this.props.replies;
+    console.log(this.props.replies);
     return (
       <div className="replyFeedBody">
         <div className="replyFeedHeader">
@@ -132,10 +136,10 @@ class ReplyFeed extends React.Component {
           <span className="startReply" onClick={this.startNewReply}>New Reply</span>
         </div>
         {this.state.creatingReply && (<NewReply cancelReply={this.cancelReply} />)}
-        <Reply />
-        <Reply />
-        <Reply />
-        <Reply />
+        {/* {replies.map(reply => (
+          <Reply title={reply.title} date={reply.created_at.substring(0, reply.created_at.indexOf('T'))} 
+          user={reply.user_id} text={reply.body} id={reply.id}  />
+        ))}; */}
       </div>
     );
   }
@@ -152,12 +156,12 @@ class Post extends React.Component {
       tag: 'Emergency Response',
       text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.',
       ratingsVisible: false,
-      repliesVisible: false
+      repliesVisible: false,
+      replies: []
     }
-
     this.toggleRatings = this.toggleRatings.bind(this);
     this.toggleReplies = this.toggleReplies.bind(this);
-  }
+}
   
   /* I think this is unnecessary. You should be able to grab the props directly in render()
      Ideally state will only be used for the mutable aspects of the component, like the visibility booleans
@@ -167,6 +171,12 @@ class Post extends React.Component {
     this.setState({date: this.props.date});
     this.setState({title: this.props.title});
     this.setState({text: this.props.text});
+
+    axios.get(`${baseUrl}/department/${this.props.id}/post/${this.props.id}/replies`).then(res=>{
+      console.log("ahhhhh");
+      console.log(res.data.replies);
+      this.setState({replies: res.data.replies});
+    });
   }
 
   toggleRatings() {
@@ -201,7 +211,7 @@ class Post extends React.Component {
         </p>
 
         {this.state.ratingsVisible && (<PostRatings />)}
-        {this.state.repliesVisible && (<ReplyFeed />)}
+        {this.state.repliesVisible && (<ReplyFeed replies={this.state.replies}/>)}
 
         <div className="postControls">
           <p className="toggleRatings" onClick={this.toggleRatings}>
