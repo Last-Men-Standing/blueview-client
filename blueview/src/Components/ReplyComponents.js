@@ -1,15 +1,22 @@
 import React from 'react';
 import './Post.css';
+import baseUrl from '../Utils/config'
+import axios from 'axios';
 
 // Individual replies to each post.
 class Reply extends React.Component {
     constructor(props) {
       super(props);
   
+      // this.state = {
+      //   user: 'Jen Richards',
+      //   time: '16:43',
+      //   text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
+      // }
       this.state = {
-        user: 'Jen Richards',
-        time: '16:43',
-        text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
+        user: this.props.user,
+        time: this.props.date,
+        text: this.props.text
       }
     }
 
@@ -51,8 +58,21 @@ class NewReply extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       alert("Text: " + this.state.text);
-      console.log("This is it?")
-      //TODO: Create and add new reply
+
+      const token = localStorage.getItem('jwt-token');
+      const config = { headers: { 'authorization': `Bearer ${token}` } };
+      axios.post(`${baseUrl}/department/${this.props.department_id}/post/${this.props.postid}/reply`, {
+        text:this.state.text
+      }, config).then(res => {
+        alert("New Reply Created Successfully");
+        console.log("Successful reply!");
+        console.log(res);
+        //TODO: Handle success
+      }).catch(error => {
+        //TODO: handle error
+        console.log(error);
+        alert("Error Creating Reply");
+      });
       this.props.cancelReply(); // Hide new post form
     }
   // Consists of a form with a text field, a cancel button, and a post button
@@ -96,22 +116,21 @@ class ReplyFeed extends React.Component {
     }
     // Consists of a simple header, a NewReply form, and any number of replies.
     render() {
-      const {replies} = this.props.replies;
-      console.log(this.props.replies);
+      console.log("RERENDERED");
+      const {replies} = this.props;
       return (
         <div className="replyFeedBody">
           <div className="replyFeedHeader">
             <span className="replyFeedHeaderLabel">Replies</span>
             <span className="startReply" onClick={this.startNewReply}>New Reply</span>
           </div>
-          {this.state.creatingReply && (<NewReply cancelReply={this.cancelReply} />)}
-          {/* {replies.map(reply => (
-            <Reply title={reply.title} date={reply.created_at.substring(0, reply.created_at.indexOf('T'))} 
-            user={reply.user_id} text={reply.body} id={reply.id}  />
-          ))}; */}
+          {this.state.creatingReply && (<NewReply cancelReply={this.cancelReply} postid={this.props.postid} department_id={this.props.department_id}/>)}
+            {typeof replies !== "undefined" && replies.map(reply => (
+              <Reply title={reply.title} date={reply.created_at.substring(0, reply.created_at.indexOf('T'))} 
+              user={reply.user_id} text={reply.text} id={this.props.postid}  />
+            ))}
         </div>
       );
     }
   }
-
 export default ReplyFeed;
