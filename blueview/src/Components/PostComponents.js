@@ -195,6 +195,7 @@ class Post extends React.Component {
       }
       this.toggleRatings = this.toggleRatings.bind(this);
       this.toggleReplies = this.toggleReplies.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
   }
     
     /* I think this is unnecessary. You should be able to grab the props directly in render()
@@ -227,6 +228,10 @@ class Post extends React.Component {
         repliesVisible: !current
       });
     }
+
+    handleDelete() {
+      alert("DELTING POST");
+    }
   
   // Consists of a header with post information, a body, a ratings section, and replies.
   // PostRatings and ReplyFeed are conditionally rendered based on the state of ratingsVisible
@@ -255,6 +260,9 @@ class Post extends React.Component {
             </p>
             <p className="toggleReplies" onClick={this.toggleReplies}>
               {this.state.repliesVisible ? "Hide Replies" : "Show Replies"}
+            </p>
+            <p className="deleteButton" onClick={this.handleDelete}>
+              Delete Post
             </p>
           </div>
   
@@ -312,8 +320,10 @@ class Post extends React.Component {
             user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
             attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
           ))}
+          <Post />
         </div>
       );
     }
   }
+
 export default PostFeed;
