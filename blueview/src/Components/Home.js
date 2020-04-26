@@ -30,7 +30,7 @@ class HomePage extends React.Component {
           <div className="centerBox">
             <div className="asdf">
               <PostFeed isHomepage={true}/>
-              </div>
+            </div>
           </div>
         </div>
       </div>

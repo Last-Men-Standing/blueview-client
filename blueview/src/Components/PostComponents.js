@@ -336,7 +336,6 @@ class PostFeed extends React.Component {
           user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
           attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
         ))}
-        <Post />
       </div>
     );
   }
