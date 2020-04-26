@@ -13,7 +13,9 @@ class Header extends React.Component {
       loggedIn: (localStorage.getItem('jwt-token')||'' != ''),
       zip: '',
       redirectHome: false,
-      redirectSignin:false
+      redirectSignin:false,
+      toDepartmentPage:false,
+      department:null
     }
     
     this.goAllDepts = this.goAllDepts.bind(this);
@@ -37,6 +39,13 @@ class Header extends React.Component {
   handleSearch(event) {
     event.preventDefault();
     alert("Search");
+    axios.get(`${baseUrl}/department/zipcode/${this.state.zip}`)
+    .then(res => {
+      const data = res.data
+      console.log(data.department[0]);
+      this.setState({department: data.department[0]});
+      this.setState({toDepartmentPage: true});
+    });
   }
 
   goHome(event) {
@@ -64,8 +73,7 @@ class Header extends React.Component {
     } else {
       accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
     }
-    const {redirectHome} = this.state;
-    const {redirectSignin} = this.state;
+    const {redirectHome, redirectSignin, toDepartmentPage} = this.state;
 
     if(redirectHome){
       console.log("this should happen");
@@ -73,6 +81,9 @@ class Header extends React.Component {
     }
     if(redirectSignin){
         return <Redirect to={'/SignIn'}/>
+    }
+    if(toDepartmentPage){
+      return <Redirect to={'/DepartmentPage/' + this.state.department.id}/>
     }
 
     return (
