@@ -7,6 +7,10 @@ import './Home.css';
 
 class HomePage extends React.Component {
   render() {
+    var desc = 'Create an account or sign in to contribute!';
+    if((localStorage.getItem('jwt-token') || '') != ''){
+      desc = 'Post your recent experinces and help make your community a better place!'
+    }
     return (
       <div>
         <Header />
@@ -21,7 +25,7 @@ class HomePage extends React.Component {
               Find your police department by searching for a ZIP code above.
             </p>
             <p className="description">
-              Create an account or sign in to contribute!
+              {desc}
             </p>
           </div>
         </div>
