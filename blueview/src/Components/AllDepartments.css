@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+}
+
+.centerBox {
+  width: 840px;
+  margin: 0 70px;
+}
+
+.allDeptHeader {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #DDD;
+  background-color: #FCFCFC;
+  box-shadow: 0 0 8px -1px #DDD;
+}
+
+.allDeptTitle {
+  margin: 75px 0 0 0;
+
+  font-family: 'Roboto';
+  color: #0D4F8B;
+}
+
+.allDeptContent {
+  margin-top: 128px;
+  margin-bottom: 44px;
+
+  display: flex;
+  jusfify-content: center;
+}
+
+
+
+
+.deptListItem {
+  padding: 10px;
+  border-top: 2px solid #EEE;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.deptListTitle, .deptListInfo {
+  margin: 0;
+  padding: 0;
+}
+
+.deptListTitle {
+  font-family: 'Roboto';
+  font-size: 16px;
+  color: #2686DE;
+}
+
+.deptListInfo {
+  margin-top: 3px;
+  font-family: 'Roboto';
+  font-size: 13px;
+  color: #888;
+}
+
+
+
+
+.deptListRatings {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.deptRatingGroup {
+  margin-left: 20px;
+}
+
+.deptRating {
+  margin: 0px 0 0 0;
+  font-family: 'Asap';
+  font-weight: bold;
+  font-size: 13px;
+  color: #BBB;
+}
+
+.deptRatingNumber {
+  float: right;
+  margin-left: 10px;
+  color: #2686DE;
+}
