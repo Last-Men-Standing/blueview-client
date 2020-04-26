@@ -18,14 +18,27 @@ class Reply extends React.Component {
         time: this.props.date,
         text: this.props.text
       }
+
+      this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(event) {
+      alert("DELETING REPLY");
     }
 
     // Consists of a title bar with timestamp, and a text body
     render() {
+      // CONDITIONAL RENDERING: ONLY RENDER DELETE REPLY IF USER IS LOGGED IN
       return (
         <div className="replyBody">
           <div className="postInfo">
-            <a className="userName">{this.state.user}</a> at {this.state.time}
+            <span>
+              <a className="userName">{this.state.user}</a> at {this.state.time}
+            </span>
+
+            {true && (
+              <p className="deleteReply" onClick={this.handleDelete}>Delete Reply</p>
+            )}
           </div>
           
           <p className="postBody">
@@ -129,6 +142,8 @@ class ReplyFeed extends React.Component {
               <Reply title={reply.title} date={reply.created_at.substring(0, reply.created_at.indexOf('T'))} 
               user={reply.user_id} text={reply.text} id={this.props.postid}  />
             ))}
+          <Reply />
+          <Reply />
         </div>
       );
     }

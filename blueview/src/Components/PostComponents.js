@@ -252,6 +252,7 @@ class Post extends React.Component {
   // and repliesVisible respectively.
   render() {
     return (
+      // CONDITIONAL RENDERING: ONLY RENDER DELETE POST BUTTON IF USER IS LOGGED IN
       <div className="postBox">
 
         <div className="postInfo">
@@ -275,9 +276,12 @@ class Post extends React.Component {
           <p className="toggleReplies" onClick={this.toggleReplies}>
             {this.state.repliesVisible ? "Hide Replies" : "Show Replies"}
           </p>
-          <p className="deleteButton" onClick={this.handleDelete}>
-            Delete Post
-          </p>
+
+          {true && (
+            <p className="deleteButton" onClick={this.handleDelete}>
+              Delete Post
+            </p>
+          )}
         </div>
 
       </div>
@@ -328,14 +332,22 @@ class PostFeed extends React.Component {
     const { posts } = this.state;
     return (
       // Parent of NewPost
+
+      // CONDITIONAL RENDERING: ONLY RENDER PostControls IF THE USER IS LOGGED IN
       <div className="postFeedContainer">
-        <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
+
+        {true && (
+          <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
+        )}
+
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
           <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 
           user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
           attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
         ))}
+        <Post />
+        <Post />
       </div>
     );
   }

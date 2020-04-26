@@ -1,3 +1,8 @@
+textarea {
+    padding: 3px;
+    font-size: 13px;
+}
+
 /*
 Post Feed Controls ---------------
 */
@@ -118,6 +123,10 @@ The post itself ------------------
     cursor: pointer;
 }
 
+.deleteButton {
+    color: #E3170D !important;
+}
+
 .postRatingsBody {
     margin: 3px 5px;
     padding-top: 4px;
@@ -184,6 +193,9 @@ The post itself ------------------
     outline: none;
 }
 
+
+
+
 .replyBody {
     margin-bottom: 6px;
     border: 2px solid #DDD;
@@ -191,6 +203,26 @@ The post itself ------------------
     box-shadow: 0 0 8px -2px #DDD;
     background-color: #FCFCFC;
 }
+
+.replyBody .postInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteReply {
+    color: #E3170D;
+    cursor: pointer;
+}
+
+.deleteReply {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
 
 .newReplyControls * {
     display: inline;

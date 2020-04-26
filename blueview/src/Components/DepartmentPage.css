@@ -1,10 +1,11 @@
-body {  /* May be best to apply to router instead. Not sure yet */
+body, html {  /* May be best to apply to router instead. Not sure yet */
   margin: 0;
   min-width: 960px;
 }
 
 .centerBox {
-  width: 840px;
+  width: 820px;
+  min-width: 760px;
   margin: 0 70px;
 }
 
@@ -47,7 +48,7 @@ Top of page -----------------------
 
 .ratingsContainer {
   float: right;
-  width: 150px;
+  width: 130px;
   margin-top: 45px;
 }
 
@@ -74,74 +75,6 @@ Bottom of page --------------------
   justify-content: center;
 
   margin-top: 180px;
-}
-
-.postControlsContainer {
-  padding-bottom: 10px;
-  border-bottom: solid 2px #EEE;
-
-  display: flex;
-  justify-content: flex-end;
-}
-
-.postFeedContainer {
-  width: 100%;
-  max-width: 554px;
-  margin-bottom: 60px;
-}
-
-.createNewPostButton {
-  height: 22px;
-  margin-right: 5px;
-
-  cursor: pointer;
-  border: 2px solid #32CD32;
-  border-radius: 2px;
-
-  font-family: 'Asap';
-  color: #32CD32;
-  font-weight: bold;
-
-  background-color: #BDFCC9;
-  box-shadow: 0 0 8px -1px #DDD;
-
-  outline: none;
-}
-
-.zipHeaderForm * {
-  display: inline-block;
-}
-
-.zipHeaderField {
-  width: 150px;
-  margin-top: 4px;
-  margin-right: 6px;
-  text-align: center;
-
-  border: 2px solid #AAA;
-  border-radius: 3px;
-  box-shadow: 0 0 8px -1px #DDD;
-  background-color: #FCFCFC;
-
-  font-family: 'Asap';
-  outline: none;
-}
-
-.zipHeaderButton {
-  height: 20px;
-  cursor: pointer;
-  border: 2px solid #2686DE;
-  border-radius: 2px;
-
-  background-color: #BFEFFF;
-  box-shadow: 0 0 8px -1px #DDD;
-
-  outline: none;
-
-  font-family: 'Asap';
-  color: #2686DE;
-  font-size: 11px;
-  font-weight: bold;
 }
 
 /* Chrome, Safari, Edge, Opera */
