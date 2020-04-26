@@ -43,3 +43,39 @@
 .deptListButton {
   color: #2686DE;
 }
+
+.zipHeaderForm * {
+  display: inline-block;
+}
+
+.zipHeaderField {
+  width: 150px;
+  margin-top: 4px;
+  margin-right: 6px;
+  text-align: center;
+
+  border: 2px solid #AAA;
+  border-radius: 3px;
+  box-shadow: 0 0 8px -1px #DDD;
+  background-color: #FCFCFC;
+
+  font-family: 'Asap';
+  outline: none;
+}
+
+.zipHeaderButton {
+  height: 20px;
+  cursor: pointer;
+  border: 2px solid #2686DE;
+  border-radius: 2px;
+
+  background-color: #BFEFFF;
+  box-shadow: 0 0 8px -1px #DDD;
+
+  outline: none;
+
+  font-family: 'Asap';
+  color: #2686DE;
+  font-size: 11px;
+  font-weight: bold;
+}

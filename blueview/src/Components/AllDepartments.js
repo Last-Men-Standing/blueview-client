@@ -22,12 +22,18 @@ class AllDeptHeader extends React.Component {
 class DepartmentListItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.deptRedirect = this.deptRedirect.bind(this);
+  }
+
+  deptRedirect(event) {
+    alert("Redirect to corresponding department page");
   }
 
   // GET THE INFORMATION FOR EACH FROM PROPS PASSED FROM DepartmentList
   render() {
     return(
-      <div className="deptListItem">
+      <div className="deptListItem" onClick={this.deptRedirect}>
         <div className="deptListNameAddress">
           <p className="deptListTitle">Department Name Sheriff's Department</p>
           <p className="deptListInfo">123 Department Address, Town, ST 01234</p>

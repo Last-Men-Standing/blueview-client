@@ -1,5 +1,6 @@
 body {  /* May be best to apply to router instead. Not sure yet */
   margin: 0;
+  min-width: 960px;
 }
 
 .centerBox {

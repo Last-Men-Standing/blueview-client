@@ -16,6 +16,9 @@ body {
   border-bottom: 2px solid #DDD;
   background-color: #FCFCFC;
   box-shadow: 0 0 8px -1px #DDD;
+
+  display: flex;
+  justify-content: center;
 }
 
 .allDeptTitle {
@@ -23,6 +26,8 @@ body {
 
   font-family: 'Roboto';
   color: #0D4F8B;
+
+  float: left;
 }
 
 .allDeptContent {
@@ -30,7 +35,7 @@ body {
   margin-bottom: 44px;
 
   display: flex;
-  jusfify-content: center;
+  justify-content: center;
 }
 
 

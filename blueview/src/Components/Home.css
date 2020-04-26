@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  min-width: 960px;
+}
+
+.centerBox {
+  width: 840px;
+  margin: 0 70px;
+}
+
+.homeHeader {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 45px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #DDD;
+  background-color: #FCFCFC;
+  box-shadow: 0 0 8px -1px #DDD;
+
+  display: flex;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.homeHeader:after {
+  content: "";
+  background-image: url('https://www.moneycrashers.com/wp-content/uploads/2018/12/tips-find-best-neighborhood-live-in.jpg');
+  background-position: right;
+  background-size: cover;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+
+  opacity: 0.2;
+}
+
+.welcome {
+  margin: 100px 0 0 0;
+
+  font-size: 25px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: #0D4F8B;
+}
+
+.largeLogo {
+  margin: 0 0 40px 0;
+  padding: 0;
+
+  font-size: 80px;
+  font-family: 'Racing Sans One';
+  color: #0D4F8B;
+}
+
+.description {
+  font-family: 'Asap';
+  color: #555;
+  font-size: 18px;
+}
+
+
+
+.homeBottom {
+  margin: 500px 0 0 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+.asdf {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
