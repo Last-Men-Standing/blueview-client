@@ -290,7 +290,6 @@ class PostFeed extends React.Component {
     super(props);
 
     this.state = {
-      isHomepage: true,
       creatingPost: false,
       posts: []
     }
@@ -330,7 +329,7 @@ class PostFeed extends React.Component {
     return (
       // Parent of NewPost
       <div className="postFeedContainer">
-        <PostControls showNewPost={this.showNewPost} isHomepage={this.state.isHomepage} />
+        <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
         {posts.map(post => (
           <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 

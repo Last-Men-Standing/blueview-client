@@ -102,7 +102,7 @@ class DepartmentContent extends React.Component {
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
-          <PostFeed id={this.props.id} />
+          <PostFeed id={this.props.id} isHomepage={false}/>
         </div>
       </div>
     );
