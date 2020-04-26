@@ -8,7 +8,7 @@ import axios from 'axios';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '', loggedIn: false,toZipSearch: false,toRegister: false}
+    this.state = {username: '', password: '', loggedIn: false,toRegister: false,toHome:false}
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -35,7 +35,7 @@ class SignIn extends React.Component {
       localStorage.setItem('jwt-token',res.data.credentials.split(' ')[1]);
       console.log(res.data.credentials);
       this.setState({loggedIn: true});
-      this.setState({toZipSearch: true});
+      this.setState({toHome: true});
     }).catch(error =>{
       //TODO: Handle incorrect user and password
       alert('How about trying a username and password that actually exist');
@@ -49,15 +49,13 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { toZipSearch } = this.state;
     const { toRegister} = this.state;
-    const path = '/ZipSearch';
-    if (toZipSearch) {
-      return <Redirect to={path}/>;
+    const {toHome} = this.state;
+    if (toHome) {
+      return <Redirect to={'/Home'}/>;
     }
-    const p = 'register';
     if(toRegister){
-      return <Redirect to={p}/>
+      return <Redirect to={'/register'}/>
     }
     return (
       

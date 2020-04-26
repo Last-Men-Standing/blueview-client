@@ -10,7 +10,7 @@ class Header extends React.Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      loggedIn: (localStorage.getItem('jwt-token')||'' != ''),
       zip: '',
       redirectHome: false,
       redirectSignin:false
