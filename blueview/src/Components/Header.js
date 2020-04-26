@@ -15,6 +15,7 @@ class Header extends React.Component {
       redirectHome: false,
       redirectSignin:false,
       toDepartmentPage:false,
+      toAllDepartments:false,
       department:null
     }
     
@@ -28,6 +29,7 @@ class Header extends React.Component {
 
   goAllDepts(event) {
     alert("Redirect to all departments page");
+    this.setState({toAllDepartments:true});
   }
 
   handleZipTyping(event) {
@@ -73,7 +75,7 @@ class Header extends React.Component {
     } else {
       accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
     }
-    const {redirectHome, redirectSignin, toDepartmentPage} = this.state;
+    const {redirectHome, redirectSignin, toDepartmentPage, toAllDepartments} = this.state;
 
     if(redirectHome){
       console.log("this should happen");
@@ -84,6 +86,9 @@ class Header extends React.Component {
     }
     if(toDepartmentPage){
       return <Redirect to={'/DepartmentPage/' + this.state.department.id}/>
+    }
+    if(toAllDepartments){
+      return <Redirect to={'/AllDepartments/'}/>
     }
 
     return (
