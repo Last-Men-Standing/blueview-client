@@ -8,16 +8,16 @@ class Reply extends React.Component {
     constructor(props) {
       super(props);
   
-      // this.state = {
-      //   user: 'Jen Richards',
-      //   time: '16:43',
-      //   text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
-      // }
-      this.state = {
-        user: this.props.user,
-        time: this.props.date,
-        text: this.props.text
-      }
+       this.state = {
+         user: 'Jen Richards',
+         time: '16:43',
+         text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
+       }
+      //this.state = {
+      //  user: this.props.user,
+      //  time: this.props.date,
+      //  text: this.props.text
+      //}
 
       this.handleDelete = this.handleDelete.bind(this);
     }
@@ -37,7 +37,7 @@ class Reply extends React.Component {
             </span>
 
             {true && (
-              <p className="deleteReply" onClick={this.handleDelete}>Delete Reply</p>
+              <p className="deleteReply" onClick={this.handleDelete}>Delete</p>
             )}
           </div>
           
