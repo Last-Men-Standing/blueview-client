@@ -3,6 +3,7 @@ import baseUrl from '../Utils/config';
 import axios from 'axios';
 import Header from './Header.js';
 import './AllDepartments.css';
+import { Redirect } from 'react-router-dom'
 
 // Custom big header for this page. Simply says "All Police Departments"
 class AllDeptHeader extends React.Component {
@@ -22,16 +23,24 @@ class AllDeptHeader extends React.Component {
 class DepartmentListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      toDep:false
+    };
 
     this.deptRedirect = this.deptRedirect.bind(this);
   }
 
   deptRedirect(event) {
     alert("Redirect to corresponding department page");
+    this.setState({toDep:true});
   }
 
   // GET THE INFORMATION FOR EACH FROM PROPS PASSED FROM DepartmentList
   render() {
+    const {toDep} = this.state;
+    if(toDep){
+      return <Redirect to={'/DepartmentPage/' + this.props.id}/>
+    }
     return(
       <div className="deptListItem" onClick={this.deptRedirect}>
         <div className="deptListNameAddress">
@@ -39,14 +48,12 @@ class DepartmentListItem extends React.Component {
           <p className="deptListInfo">{this.props.address} {this.props.zipcode}</p>
         </div>
         <div className="deptListRating">
-          <p className="deptRating">Overall Rating: <span className="deptRatingNumber">3.0</span></p>
+          <p className="deptRating">Overall Rating: <span className="deptRatingNumber">{this.props.rating}</span></p>
         </div>
       </div>
     );
   }
 }
-
-
 
 class DepartmentList extends React.Component {
   constructor(props) {
@@ -69,12 +76,8 @@ class DepartmentList extends React.Component {
       <div>
         {departments != null && departments.map(department => (
           <DepartmentListItem name={department.name} address={department.address} 
-          rating={department.overall_rating} zipcode={department.zipcode}/>
+          rating={department.overall_rating} zipcode={department.zipcode} id={department.id}/>
         ))}
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
       </div>
     );
   }
