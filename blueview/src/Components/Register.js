@@ -16,6 +16,12 @@ class Register extends React.Component {
       password_2: '',
       errors: {},
       toSignIn: false,
+
+      invalidFirst: false,  // For error messages
+      invalidLast: false,
+      userLength: false,
+      badPass: false,
+
       token: localStorage.getItem('jwt-token') || '',
     }
 
@@ -74,14 +80,35 @@ class Register extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <label for="first_name">First Name:</label>
             <input type="text" id="first_name" className="registerField" value={this.state.first_name} onChange={this.onUpdate} />
+
+            {this.state.invalidFirst && (
+              <p className="errorMessage">Invalid first name.</p>
+            )}
+
             <label for="last_name">Last Name:</label>
             <input type="text" id="last_name" className="registerField" value={this.state.last_name} onChange={this.onUpdate} />
+
+            {this.state.invalidLast && (
+              <p className="errorMessage">Invalid last name.</p>
+            )}
+            
             <label for="username">Username:</label>
             <input type="text" id="username" className="registerField" value={this.state.username} onChange={this.onUpdate} />
+
+            {this.state.userLength && (
+              <p className="errorMessage">Username must be between 2 and 20 characters.</p>
+            )}
+
             <label for="password">Password:</label>
             <input type="password" id="password" className="registerField" value={this.state.password} onChange={this.onUpdate} />
             <label for="password_2">Confirm Password:</label>
             <input type="password" id="password_2" className="registerField" value={this.state.password_2} onChange={this.onUpdate} />
+
+            {((this.state.password != this.state.password_2 && this.state.password_2 != '') ||
+                this.state.badPass) && (
+              <p className="errorMessage">Passwords must match and cannot be empty.</p>
+            )}
+
             <input type="submit" value="ENTER" className="registerSubmit" />
           </form>
           <a className="alreadyUser" onClick={this.alreadyUser}>Already have an account? Sign in here!</a>
