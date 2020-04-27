@@ -254,7 +254,6 @@ class Post extends React.Component {
     return (
       // CONDITIONAL RENDERING: ONLY RENDER DELETE POST BUTTON IF USER IS LOGGED IN
       <div className="postBox">
-
         <div className="postInfo">
             <span className="postTitle">{this.state.title}</span> on {this.state.date} by&nbsp;
             <a className="userName">{this.state.user}</a>
@@ -277,7 +276,7 @@ class Post extends React.Component {
             {this.state.repliesVisible ? "Hide Replies" : "Show Replies"}
           </p>
 
-          {this.state.user=localStorage.getItem('userid') && (
+          {this.state.user==localStorage.getItem('userid') && (
             <p className="deleteButton" onClick={this.handleDelete}>
               Delete Post
             </p>
