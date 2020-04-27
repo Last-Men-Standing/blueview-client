@@ -61,7 +61,6 @@ class Register extends React.Component {
   }
 
   alreadyUser(event) {
-    alert("Already a user!");
     this.setState({toSignIn: true});
   }
 

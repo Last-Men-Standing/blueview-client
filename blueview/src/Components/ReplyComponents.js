@@ -23,7 +23,10 @@ class Reply extends React.Component {
     }
 
     handleDelete(event) {
-      alert("DELETING REPLY");
+      // axios.delete(`${baseUrl}/department/post_reply/${this.props.id}/delete`).then(res=>{
+      //   alert("Reply Deleted Successfully");
+      //   console.log(res);
+      // });
     }
 
     // Consists of a title bar with timestamp, and a text body
@@ -70,7 +73,6 @@ class NewReply extends React.Component {
   // Called when the submit button is pressed
     handleSubmit(event) {
       event.preventDefault();
-      alert("Text: " + this.state.text);
 
       const token = localStorage.getItem('jwt-token');
       const config = { headers: { 'authorization': `Bearer ${token}` } };
