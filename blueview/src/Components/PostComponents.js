@@ -335,7 +335,7 @@ class PostFeed extends React.Component {
       // CONDITIONAL RENDERING: ONLY RENDER PostControls IF THE USER IS LOGGED IN
       <div className="postFeedContainer">
 
-        {(localStorage.getItem('jwt-token')||'')!='' && (
+        {((localStorage.getItem('jwt-token')||'')!='')||this.props.isHomepage && (
           <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
         )}
 
