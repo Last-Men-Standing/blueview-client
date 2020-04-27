@@ -208,12 +208,10 @@ class Post extends React.Component {
 
     this.toggleRatings = this.toggleRatings.bind(this);
     this.toggleReplies = this.toggleReplies.bind(this);
+    this.deptRedirect = this.deptRedirect.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
   
-  /* I think this is unnecessary. You should be able to grab the props directly in render()
-      Ideally state will only be used for the mutable aspects of the component, like the visibility booleans
-  */
   componentDidMount() {
     this.setState({user: this.props.user});
     this.setState({date: this.props.date});
@@ -241,6 +239,10 @@ class Post extends React.Component {
     this.setState({
       repliesVisible: !current
     });
+  }
+
+  deptRedirect(event) {
+    alert("REDIRECT TO DEPARTMENT PAGE");
   }
 
   handleDelete() {
@@ -275,6 +277,12 @@ class Post extends React.Component {
           <p className="toggleReplies" onClick={this.toggleReplies}>
             {this.state.repliesVisible ? "Hide Replies" : "Show Replies"}
           </p>
+
+          {this.props.isHomepage && (
+            <p className="visitDepartment" onClick={this.deptRedirect}>
+              Department Page
+            </p> 
+          )}
 
           {this.state.user==localStorage.getItem('userid') && (
             <p className="deleteButton" onClick={this.handleDelete}>
