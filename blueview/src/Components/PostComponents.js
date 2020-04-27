@@ -39,6 +39,7 @@ class NewPost extends React.Component {
       title: '',
       date: '',
       text: '',
+      tag:'Traffic Stop',
       attitude: '',
       communication: '',
       efficiency: '',
@@ -60,16 +61,17 @@ class NewPost extends React.Component {
   // Called when the user presses the post button in the form
   handleSubmit(event) {
     event.preventDefault();
-
+    console.log(this.state);
     alert("Title: " + this.state.title +
       "\nDate: " + this.state.date +
       "\nText: " + this.state.text);
     const token = localStorage.getItem('jwt-token');
 
-    const config = { headers: { 'authorization': `Bearer ${token}` } };
+    const config = { headers: { 'authorization': `Bearer ${token}` }};
     const params = { params: { id: this.props.department_id } };
     axios.post(`${baseUrl}/department/${this.props.department_id}/post/create`, {
       created_at: this.state.date,
+      tag: this.state.tag,
       title: this.state.title,
       body: this.state.text,
       incident_date: this.state.date,
@@ -106,7 +108,7 @@ class NewPost extends React.Component {
 
             <div className="newPostItem">
               <label className="newPostLabel">Date of event:</label>
-              <input className="newPostDate" type="date" name="date" onChange={this.handleChange} />
+              <input className="newPostDate" type="date" name="date" onChange={this.handleChange}/>
             </div>
 
             <div className="newPostItem">
@@ -246,7 +248,10 @@ class Post extends React.Component {
   }
 
   handleDelete() {
-    alert("DELTING POST");
+    axios.delete(`${baseUrl}/department/post/${this.props.id}/delete`).then(res=>{
+      alert("Post Deleted Successfully");
+      console.log(res);
+    });
   }
 
   // Consists of a header with post information, a body, a ratings section, and replies.
@@ -343,7 +348,7 @@ class PostFeed extends React.Component {
       // CONDITIONAL RENDERING: ONLY RENDER PostControls IF THE USER IS LOGGED IN
       <div className="postFeedContainer">
 
-        {((localStorage.getItem('jwt-token')||'')!='')||this.props.isHomepage && (
+        {(((localStorage.getItem('jwt-token')||'')!='')||this.props.isHomepage) && (
           <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
         )}
 
