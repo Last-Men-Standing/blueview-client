@@ -63,6 +63,7 @@ class Header extends React.Component {
   signOut(event) {
     alert("Sign Out");
     localStorage.removeItem('jwt-token');
+    localStorage.removeItem('userid');
     this.setState({redirectSignin:true});
   }
 

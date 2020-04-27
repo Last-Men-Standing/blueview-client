@@ -8,16 +8,16 @@ class Reply extends React.Component {
     constructor(props) {
       super(props);
   
-       this.state = {
-         user: 'Jen Richards',
-         time: '16:43',
-         text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
-       }
-      //this.state = {
-      //  user: this.props.user,
-      //  time: this.props.date,
-      //  text: this.props.text
-      //}
+      //  this.state = {
+      //    user: 'Jen Richards',
+      //    time: '16:43',
+      //    text: 'This is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply this is a reply'
+      //  }
+      this.state = {
+       user: this.props.user,
+       time: this.props.date,
+       text: this.props.text
+      }
 
       this.handleDelete = this.handleDelete.bind(this);
     }
@@ -36,7 +36,7 @@ class Reply extends React.Component {
               <a className="userName">{this.state.user}</a> at {this.state.time}
             </span>
 
-            {true && (
+            {this.state.user==localStorage.getItem('userid') && (
               <p className="deleteReply" onClick={this.handleDelete}>Delete</p>
             )}
           </div>
@@ -80,6 +80,7 @@ class NewReply extends React.Component {
         alert("New Reply Created Successfully");
         console.log("Successful reply!");
         console.log(res);
+        this.setState({needsUpdate:true});
         //TODO: Handle success
       }).catch(error => {
         //TODO: handle error
@@ -129,7 +130,6 @@ class ReplyFeed extends React.Component {
     }
     // Consists of a simple header, a NewReply form, and any number of replies.
     render() {
-      console.log("RERENDERED");
       const {replies} = this.props;
       return (
         <div className="replyFeedBody">
@@ -142,8 +142,6 @@ class ReplyFeed extends React.Component {
               <Reply title={reply.title} date={reply.created_at.substring(0, reply.created_at.indexOf('T'))} 
               user={reply.user_id} text={reply.text} id={this.props.postid}  />
             ))}
-          <Reply />
-          <Reply />
         </div>
       );
     }

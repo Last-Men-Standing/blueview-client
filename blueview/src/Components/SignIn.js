@@ -8,7 +8,7 @@ import axios from 'axios';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '', loggedIn: false,toRegister: false,toHome:false}
+    this.state = {username: '', password: '',loggedIn: false,toRegister: false,toHome:false}
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -33,6 +33,8 @@ class SignIn extends React.Component {
     }).then(res=>{
       alert('Successfully logged in as user ' + this.state.username);
       localStorage.setItem('jwt-token',res.data.credentials.split(' ')[1]);
+      localStorage.setItem('userid', res.data.account.id);
+      console.log(res);
       console.log(res.data.credentials);
       this.setState({loggedIn: true});
       this.setState({toHome: true});

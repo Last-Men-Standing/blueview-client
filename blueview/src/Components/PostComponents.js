@@ -277,7 +277,7 @@ class Post extends React.Component {
             {this.state.repliesVisible ? "Hide Replies" : "Show Replies"}
           </p>
 
-          {true && (
+          {this.state.user=localStorage.getItem('userid') && (
             <p className="deleteButton" onClick={this.handleDelete}>
               Delete Post
             </p>
@@ -336,7 +336,7 @@ class PostFeed extends React.Component {
       // CONDITIONAL RENDERING: ONLY RENDER PostControls IF THE USER IS LOGGED IN
       <div className="postFeedContainer">
 
-        {true && (
+        {(localStorage.getItem('jwt-token')||'')!='' && (
           <PostControls showNewPost={this.showNewPost} isHomepage={this.props.isHomepage} />
         )}
 
@@ -346,8 +346,6 @@ class PostFeed extends React.Component {
           user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
           attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
         ))}
-        <Post />
-        <Post />
       </div>
     );
   }
