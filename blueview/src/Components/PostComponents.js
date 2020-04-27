@@ -62,9 +62,6 @@ class NewPost extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
-    alert("Title: " + this.state.title +
-      "\nDate: " + this.state.date +
-      "\nText: " + this.state.text);
     const token = localStorage.getItem('jwt-token');
 
     const config = { headers: { 'authorization': `Bearer ${token}` }};
@@ -221,6 +218,7 @@ class Post extends React.Component {
     this.setState({date: this.props.date});
     this.setState({title: this.props.title});
     this.setState({text: this.props.text});
+    this.setState({tag:this.props.tag});
 
     axios.get(`${baseUrl}/department/${this.props.department_id}/post/${this.props.id}/replies`).then(res=>{
       this.setState({replies: res.data.replies});
@@ -308,13 +306,22 @@ class PostFeed extends React.Component {
 
   // Call API after component is mounted. Updates state, which triggers rerender with retrieved posts
   componentDidMount() {
-    axios.get(`${baseUrl}/department/${this.props.id}/post/all`)
+    if(this.props.isHomepage){
+      axios.get(`${baseUrl}/department/post/recent`)
+      .then(res => {
+        console.log(res);
+        this.setState({posts:res.data.recent});
+      });
+    }
+    else{
+      axios.get(`${baseUrl}/department/${this.props.id}/post/all`)
       .then(res => {
         const data = res.data.department_posts;
         console.log("PostFeed Mount");
         console.log(data);
         this.setState({ posts: data });
       });
+    }
   }
 
   // Show NewPost form
@@ -345,9 +352,9 @@ class PostFeed extends React.Component {
         )}
 
         {this.state.creatingPost && (<NewPost cancelPost={this.cancelPost} department_id={this.props.id}/>)}
-        {posts.map(post => (
+        {typeof posts !== 'undefined' && posts.map(post => (
           <Post title={post.title} date={post.created_at.substring(0, post.created_at.indexOf('T'))} 
-          user={post.user_id} text={post.body} id={post.id} department_id={this.props.id}
+          user={post.user_id} text={post.body} id={post.id} department_id={this.props.id} tag={post.tag}
           attitude={post.attitude} communication={post.communication} efficiency={post.efficiency} fairness={post.fairness} safety={post.safety}/>
         ))}
       </div>

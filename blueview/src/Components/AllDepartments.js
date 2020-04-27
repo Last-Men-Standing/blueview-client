@@ -31,7 +31,6 @@ class DepartmentListItem extends React.Component {
   }
 
   deptRedirect(event) {
-    alert("Redirect to corresponding department page");
     this.setState({toDep:true});
   }
 

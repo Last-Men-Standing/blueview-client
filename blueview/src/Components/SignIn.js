@@ -26,7 +26,6 @@ class SignIn extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert('Username: ' + this.state.username + "\nPassword: " + this.state.password);
     axios.post(`${baseUrl}/account/login`, {
       username: this.state.username,
       password: this.state.password
@@ -40,13 +39,12 @@ class SignIn extends React.Component {
       this.setState({toHome: true});
     }).catch(error =>{
       //TODO: Handle incorrect user and password
-      alert('How about trying a username and password that actually exist');
+      alert('Incorrect username or password');
     });
     //TODO: Cleanup?
   }
 
   notUser(event) {
-    alert("Not a user!");
     this.setState({toRegister: true});
   }
 

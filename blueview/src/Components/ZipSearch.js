@@ -19,7 +19,6 @@ class ZipSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert('Zip Code: ' + this.state.zipcode);
     console.log(this.state.zipcode);
     axios.get(`${baseUrl}/department/zipcode/${this.state.zipcode}`)
       .then(res => {

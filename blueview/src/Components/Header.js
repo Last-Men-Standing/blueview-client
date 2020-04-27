@@ -28,7 +28,6 @@ class Header extends React.Component {
   }
 
   goAllDepts(event) {
-    alert("Redirect to all departments page");
     this.setState({toAllDepartments:true});
   }
 
@@ -40,7 +39,6 @@ class Header extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
-    alert("Search");
     axios.get(`${baseUrl}/department/zipcode/${this.state.zip}`)
     .then(res => {
       const data = res.data
@@ -51,17 +49,14 @@ class Header extends React.Component {
   }
 
   goHome(event) {
-    alert("Redirect to homepage");
     this.setState({redirectHome:true});
   }
 
   signIn(event) {
-    alert("Sign In");
     this.setState({redirectSignin:true});
   }
 
   signOut(event) {
-    alert("Sign Out");
     localStorage.removeItem('jwt-token');
     localStorage.removeItem('userid');
     this.setState({redirectSignin:true});
