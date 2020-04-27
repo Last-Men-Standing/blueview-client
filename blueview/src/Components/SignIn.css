@@ -9,7 +9,6 @@
 
 .signInContainer {
   width: 375px;
-  height: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +58,13 @@ label {
   color: #464646;
 }
 
+.errorMessage {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #E3170D;
+}
+
 .signInSubmit {
   margin: 30px auto 0 auto;
   height: 40px;
@@ -84,7 +90,7 @@ label {
 }
 
 .notUser {
-  margin-top: 30px;
+  margin: 30px 0;
   
   font-size: 13px;
   color: #2686DE;

@@ -8,7 +8,14 @@ import axios from 'axios';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '',loggedIn: false,toRegister: false,toHome:false}
+    this.state = {
+      username: '', 
+      password: '',
+      loggedIn: false,
+      toRegister: false,
+      toHome: false,
+      triedIncorrect: false
+    }
 
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
@@ -40,7 +47,9 @@ class SignIn extends React.Component {
       this.setState({toHome: true});
     }).catch(error =>{
       //TODO: Handle incorrect user and password
-      alert('How about trying a username and password that actually exist');
+      this.setState({
+        triedIncorrect: true
+      })
     });
     //TODO: Cleanup?
   }
@@ -71,6 +80,11 @@ class SignIn extends React.Component {
               <input type="text" id="username" className="signInField" value={this.state.username} onChange={this.updateUsername} />
               <label for="password">Password:</label>
               <input type="password" id="password" className="signInField" value={this.state.password} onChange={this.updatePassword} />
+              
+              {this.state.triedIncorrect && (
+                <p className="errorMessage">Incorrect username or password.</p>
+              )}
+              
               <input type="submit" value="ENTER" className="signInSubmit"/>
             </form>
             <a className="notUser" onClick={this.notUser}>Don't have an account? Sign up here!</a>
