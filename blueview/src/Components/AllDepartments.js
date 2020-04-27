@@ -35,8 +35,8 @@ class DepartmentListItem extends React.Component {
     return(
       <div className="deptListItem" onClick={this.deptRedirect}>
         <div className="deptListNameAddress">
-          <p className="deptListTitle">Department Name Sheriff's Department</p>
-          <p className="deptListInfo">123 Department Address, Town, ST 01234</p>
+          <p className="deptListTitle">{this.props.name}</p>
+          <p className="deptListInfo">{this.props.address} {this.props.zipcode}</p>
         </div>
         <div className="deptListRatings">
           <div className="deptRatingGroup">
@@ -47,7 +47,7 @@ class DepartmentListItem extends React.Component {
           <div className="deptRatingGroup">
             <p className="deptRating">Fairness: <span className="deptRatingNumber">2.0</span></p>
             <p className="deptRating">Safety: <span className="deptRatingNumber">1.0</span></p>
-            <p className="deptRating">Overall: <span className="deptRatingNumber">0.0</span></p>
+            <p className="deptRating">Overall: <span className="deptRatingNumber">{this.props.rating}</span></p>
           </div>
         </div>
       </div>
@@ -58,39 +58,28 @@ class DepartmentListItem extends React.Component {
 
 
 class DepartmentList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      departments:null
+    };
+  }
+  componentDidMount() {
+    axios.get(`${baseUrl}/department/all`)
+      .then(res => {
+        console.log(res.data.departments);
+        this.setState({departments:res.data.departments});
+      });
+  }
   render() {
+    // Address, name, overall_rating, zipcode
+    const {departments} = this.state;
     return(
       <div>
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
-        <DepartmentListItem />
+        {departments != null && departments.map(department => (
+          <DepartmentListItem name={department.name} address={department.address} 
+          rating={department.overall_rating} zipcode={department.zipcode}/>
+        ))}
       </div>
     );
   }
