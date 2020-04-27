@@ -38,17 +38,8 @@ class DepartmentListItem extends React.Component {
           <p className="deptListTitle">{this.props.name}</p>
           <p className="deptListInfo">{this.props.address} {this.props.zipcode}</p>
         </div>
-        <div className="deptListRatings">
-          <div className="deptRatingGroup">
-            <p className="deptRating">Attitude: <span className="deptRatingNumber">5.0</span></p>
-            <p className="deptRating">Communication: <span className="deptRatingNumber">4.0</span></p>
-            <p className="deptRating">Efficiency: <span className="deptRatingNumber">3.0</span></p>
-          </div>
-          <div className="deptRatingGroup">
-            <p className="deptRating">Fairness: <span className="deptRatingNumber">2.0</span></p>
-            <p className="deptRating">Safety: <span className="deptRatingNumber">1.0</span></p>
-            <p className="deptRating">Overall: <span className="deptRatingNumber">{this.props.rating}</span></p>
-          </div>
+        <div className="deptListRating">
+          <p className="deptRating">Overall Rating: <span className="deptRatingNumber">3.0</span></p>
         </div>
       </div>
     );
@@ -80,6 +71,10 @@ class DepartmentList extends React.Component {
           <DepartmentListItem name={department.name} address={department.address} 
           rating={department.overall_rating} zipcode={department.zipcode}/>
         ))}
+        <DepartmentListItem />
+        <DepartmentListItem />
+        <DepartmentListItem />
+        <DepartmentListItem />
       </div>
     );
   }
