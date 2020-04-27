@@ -123,6 +123,10 @@ The post itself ------------------
     cursor: pointer;
 }
 
+.visitDepartment {
+    color: #2686DE !important;
+}
+
 .deleteButton {
     color: #E3170D !important;
 }
