@@ -1,8 +1,8 @@
 ## Contributors
 
-Zack Allen
-Joey Cengel
-Anthony Chen
+Zack Allen  
+Joey Cengel  
+Anthony Chen  
 
 ## Instructions
 
@@ -20,10 +20,10 @@ It will open in your default browser to `localhost:3000`.
 
 ## Pages
 
-/home
-/signin
-/register
-/alldepartments
+/home  
+/signin  
+/register  
+/alldepartments  
 /departmentpage/*id*
 
 **Deprecated:**
