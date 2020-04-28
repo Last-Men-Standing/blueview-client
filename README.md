@@ -1,3 +1,5 @@
+<h2 align="center">Frontend Service for BlueView</h2>
+
 ## Contributors
 
 Zack Allen  
@@ -8,7 +10,7 @@ Anthony Chen
 
 You will need [Node](https://nodejs.org/en/download/) installed before running this software.
 
-Download and unpack zipped repository.
+Clone the repository, or download and unpack the zipped version.
 
 In your command line, navigate to the topmost directory, blueview-client.
 
