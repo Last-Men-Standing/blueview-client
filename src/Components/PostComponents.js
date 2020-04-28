@@ -175,14 +175,26 @@ class PostRatings extends React.Component {
     return (
       <div className="postRatingsBody">
         <div className="postRatingContainer">
-          <p className="rating">Attitude: <span className="ratingNumber">{this.props.attitude}</span></p>
-          <p className="rating">Communication: <span className="ratingNumber">{this.props.communication}</span></p>
-          <p className="rating">Efficiency: <span className="ratingNumber">{this.props.efficiency}</span></p>
+          <p className="rating">Attitude: 
+            <span className="ratingNumber">{this.props.attitude}</span>
+          </p>
+          <p className="rating">Communication: 
+            <span className="ratingNumber">{this.props.communication}</span>
+          </p>
+          <p className="rating">Efficiency: 
+            <span className="ratingNumber">{this.props.efficiency}</span>
+          </p>
         </div>
         <div className="postRatingContainer">
-          <p className="rating">Fairness: <span className="ratingNumber">{this.props.fairness}</span></p>
-          <p className="rating">Safety: <span className="ratingNumber">{this.props.safety}</span></p>
-          <p className="rating">Overall: <span className="ratingNumber">{this.props.overall}</span></p>
+          <p className="rating">Fairness: 
+            <span className="ratingNumber">{this.props.fairness}</span>
+          </p>
+          <p className="rating">Safety: 
+            <span className="ratingNumber">{this.props.safety}</span>
+          </p>
+          <p className="rating">Overall: 
+            <span className="ratingNumber">{this.props.overall}</span>
+          </p>
         </div>
       </div>
     );
@@ -199,7 +211,7 @@ class Post extends React.Component {
       date: '2020-05-17',
       user: 'Rachel Beenest', 
       tag: 'Emergency Response',
-      text: 'The police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer the police officer.',
+      text: 'The police officer the police officer the police officer',
       ratingsVisible: false,
       repliesVisible: false,
       replies: []
@@ -211,6 +223,7 @@ class Post extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
   
+  // Populate information from props when component mounts, and collect replies
   componentDidMount() {
     this.setState({user: this.props.user});
     this.setState({date: this.props.date});
@@ -241,6 +254,7 @@ class Post extends React.Component {
     });
   }
 
+  // Redirect to department page when implemented
   deptRedirect(event) {
     alert("REDIRECT TO DEPARTMENT PAGE");
   }
@@ -257,7 +271,6 @@ class Post extends React.Component {
   // and repliesVisible respectively.
   render() {
     return (
-      // CONDITIONAL RENDERING: ONLY RENDER DELETE POST BUTTON IF USER IS LOGGED IN
       <div className="postBox">
         <div className="postInfo">
             <span className="postTitle">{this.state.title}</span> on {this.state.date} by&nbsp;
@@ -269,9 +282,16 @@ class Post extends React.Component {
           {this.state.text}
         </p>
 
-        {this.state.ratingsVisible && (<PostRatings attitude={this.props.attitude} communication={this.props.communication}
-        efficiency={this.props.efficiency} fairness={this.props.fairness} safety={this.props.safety} overall={this.props.overall}/>)}
-        {this.state.repliesVisible && (<ReplyFeed replies={this.state.replies} postid={this.props.id} department_id={this.props.department_id}/>)}
+        {this.state.ratingsVisible && (
+          <PostRatings attitude={this.props.attitude} communication={this.props.communication}
+                       efficiency={this.props.efficiency} fairness={this.props.fairness} 
+                       safety={this.props.safety} overall={this.props.overall}/>
+        )}
+
+        {this.state.repliesVisible && (
+          <ReplyFeed replies={this.state.replies} postid={this.props.id} 
+                     department_id={this.props.department_id}/>
+        )}
 
         <div className="postControls">
           <p className="toggleRatings" onClick={this.toggleRatings}>

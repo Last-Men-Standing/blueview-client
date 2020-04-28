@@ -6,13 +6,12 @@ import PostFeed from './PostComponents.js';
 import './DepartmentPage.css';
 
 
-
 // Displays the aggregated ratings for the department
 class DepartmentRatings extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {    // REPLACE WITH PROPS WHEN IMPLEMENTED
+    this.state = {    // Placeholder values
       attitude: 4.3,
       communication: 4.3,
       efficiency: 4.3,
@@ -21,6 +20,7 @@ class DepartmentRatings extends React.Component {
     }
   }
 
+  // Makes API call to gather department rating information after component mounts.
   componentDidMount() {
     axios.get(`${baseUrl}/department/${this.props.id}/rating`)
       .then(res => {
@@ -38,15 +38,28 @@ class DepartmentRatings extends React.Component {
       });
   }
   
+  // Rating metric names and their values
   render() {
     return (
       <div className="ratingsContainer">
-        <p className="rating">Attitude: <span className="ratingNumber">{this.state.attitude}</span></p>
-        <p className="rating">Communication: <span className="ratingNumber">{this.state.communication}</span></p>
-        <p className="rating">Efficiency: <span className="ratingNumber">{this.state.efficiency}</span></p>
-        <p className="rating">Fairness: <span className="ratingNumber">{this.state.fairness}</span></p>
-        <p className="rating">Safety: <span className="ratingNumber">{this.state.safety}</span></p>
-        <p className="rating">Overall: <span className="ratingNumber">{this.state.overall}</span></p>
+        <p className="rating">Attitude: 
+          <span className="ratingNumber">{this.state.attitude}</span>
+        </p>
+        <p className="rating">Communication: 
+          <span className="ratingNumber">{this.state.communication}</span>
+        </p>
+        <p className="rating">Efficiency: 
+          <span className="ratingNumber">{this.state.efficiency}</span>
+        </p>
+        <p className="rating">Fairness: 
+          <span className="ratingNumber">{this.state.fairness}</span>
+        </p>
+        <p className="rating">Safety: 
+          <span className="ratingNumber">{this.state.safety}</span>
+        </p>
+        <p className="rating">Overall: 
+          <span className="ratingNumber">{this.state.overall}</span>
+        </p>
       </div>
     );
   }
@@ -56,11 +69,17 @@ class DepartmentRatings extends React.Component {
 class DepartmentHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: "dummy", name: "South Glens Falls Police Department", address: "5 W Marion Ave, South Glens Falls, NY", zipcode: "", overall_rating: "" };
 
+    this.state = { 
+      id: "Police Department", 
+      name: "South Glens Falls Police Department", 
+      address: "5 W Marion Ave, South Glens Falls, NY", 
+      zipcode: "", 
+      overall_rating: "" 
+    };
   }
 
-// Make API call to get department information after mounting. Updates state which triggers a rerender.
+  // Make API call to get department information after mounting. Updates state which triggers a rerender.
   componentDidMount() {
     axios.get(`${baseUrl}/department/${this.props.id}`)
       .then(res => {
@@ -70,7 +89,7 @@ class DepartmentHeader extends React.Component {
         this.setState({ name: data.name });
         this.setState({ address: data.address });
         // return {id: this.props.id, name: data.name, address: data.address};
-      })
+      });
   }
 
   // Consists of department name and address with a DepartmentRatings component
@@ -82,7 +101,6 @@ class DepartmentHeader extends React.Component {
             <h1 className="departmentName">{this.state.name}</h1>
             <h2 className="departmentAddress">{this.state.address}</h2>
           </div>
-          {/* <h3 className="id">{this.state.id}</h3> */}
           <DepartmentRatings id={this.props.id} />
         </div>
       </div>
@@ -96,9 +114,8 @@ class DepartmentContent extends React.Component {
     super(props);
   }
 
-    // Currently only contains a PostFeed component
+  // Everything below department page header. Contains a PostFeed component
   render() {
-    // Parent of PostFeed
     return (
       <div className="departmentContentMain">
         <div className="centerBox">
@@ -114,6 +131,7 @@ class DepartmentPage extends React.Component {
   constructor(props) {
     super(props);
   }
+
   // Consists of the topmost header, the department-specific header, and the department content
   render() {
     // Parent of DepartmentContent

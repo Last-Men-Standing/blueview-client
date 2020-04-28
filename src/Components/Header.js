@@ -12,7 +12,7 @@ class Header extends React.Component {
     this.state = {
       loggedIn: (localStorage.getItem('jwt-token')||'' != ''),
       zip: '',
-      redirectHome: false,
+      redirectHome: false,  // Variables for redirects
       redirectSignin:false,
       toDepartmentPage:false,
       toAllDepartments:false,
@@ -27,16 +27,19 @@ class Header extends React.Component {
     this.signOut = this.signOut.bind(this);
   }
 
+  // Redirect to All Departments page
   goAllDepts(event) {
     this.setState({toAllDepartments:true});
   }
 
+  // Change state based on user typing
   handleZipTyping(event) {
     this.setState({
       zip: event.target.value
     });
   }
 
+  // Get department information for entered zipcode and redirect
   handleSearch(event) {
     event.preventDefault();
     axios.get(`${baseUrl}/department/zipcode/${this.state.zip}`)
@@ -48,42 +51,51 @@ class Header extends React.Component {
     });
   }
 
+  // Redirect to homepage
   goHome(event) {
     this.setState({redirectHome:true});
   }
 
+  // Redirect to signin if user is not signed in
   signIn(event) {
     this.setState({redirectSignin:true});
   }
 
+  // Sign out user
   signOut(event) {
     localStorage.removeItem('jwt-token');
     localStorage.removeItem('userid');
     this.setState({redirectSignin:true});
   }
 
-  // Consists of the logo, a search placeholder, and the sign in/out button (not yet linked)
+  // Consists of the logo, a search bar, 
+  // an "All Departments" button, and a sign in/out button
   render() {
     const loggedIn = this.state.loggedIn;
     let accountControl;
+
     if (loggedIn) {
       accountControl = <a className="signOutButton" onClick={this.signOut}>Sign Out</a>;
     } else {
       accountControl = <a className="signInButton" onClick={this.signIn}>Sign In</a>;
     }
+    
     const {redirectHome, redirectSignin, toDepartmentPage, toAllDepartments} = this.state;
 
-    if(redirectHome){
+    if (redirectHome) {
       console.log("this should happen");
       return <Redirect to={'/Home'}/>
     }
-    if(redirectSignin){
+
+    if (redirectSignin) {
         return <Redirect to={'/SignIn'}/>
     }
-    if(toDepartmentPage){
+
+    if (toDepartmentPage) {
       return <Redirect to={'/DepartmentPage/' + this.state.department.id}/>
     }
-    if(toAllDepartments){
+
+    if (toAllDepartments) {
       return <Redirect to={'/AllDepartments/'}/>
     }
 
@@ -91,7 +103,8 @@ class Header extends React.Component {
       <div className="headerBody">
         <p className="logo" onClick={this.goHome}>BlueView</p>
         <form onSubmit={this.handleSearch} className="zipHeaderForm">
-          <input className="zipHeaderField" placeholder="Enter a ZIP code" type="text" value={this.state.zip} name="zipHeaderField" onChange={this.handleZipTyping} />
+          <input className="zipHeaderField" placeholder="Enter a ZIP code" type="text" 
+              value={this.state.zip} name="zipHeaderField" onChange={this.handleZipTyping} />
           <input className="zipHeaderButton" type="submit" value="GO" />
         </form>
         <a className="deptListButton" onClick={this.goAllDepts}>All Departments</a>

@@ -30,9 +30,6 @@
   padding: 1px 3px;
 }
 
-/* ADD THIS LATER */
-/* https://www.npmjs.com/package/react-textarea-autosize */
-
 .newPostText {
   width: 100%;
   box-sizing: border-box;
@@ -106,4 +103,19 @@
   box-shadow: 0 0 8px -1px #DDD;
 
   outline: none;
+}
+
+
+/* Hide arrow buttons on number fields */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

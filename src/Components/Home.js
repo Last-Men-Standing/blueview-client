@@ -5,12 +5,16 @@ import Header from './Header.js';
 import PostFeed from './PostComponents.js';
 import './Home.css';
 
+// Consists of a header, a welcome panel, and a feed for recent posts
 class HomePage extends React.Component {
   render() {
+    // Change message if user is logged in
     var desc = 'Create an account or sign in to contribute!';
-    if((localStorage.getItem('jwt-token') || '') != ''){
+
+    if ((localStorage.getItem('jwt-token') || '') != '') {
       desc = 'Post your recent experinces and help make your community a better place!'
     }
+
     return (
       <div>
         <Header />

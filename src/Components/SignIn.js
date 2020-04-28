@@ -58,16 +58,18 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { toRegister} = this.state;
+    const {toRegister} = this.state;
     const {toHome} = this.state;
+
     if (toHome) {
       return <Redirect to={'/Home'}/>;
     }
+
     if(toRegister){
       return <Redirect to={'/register'}/>
     }
+
     return (
-      
       <React.Fragment>
         <div className="main">
           <div className="signInContainer">

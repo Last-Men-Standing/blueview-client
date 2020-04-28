@@ -18,11 +18,11 @@ class AllDeptHeader extends React.Component {
   }
 }
 
-
 // A single department entry in the list
 class DepartmentListItem extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       toDep:false
     };
@@ -30,16 +30,20 @@ class DepartmentListItem extends React.Component {
     this.deptRedirect = this.deptRedirect.bind(this);
   }
 
+  // Redirect to corresponding department page
   deptRedirect(event) {
     this.setState({toDep:true});
   }
 
-  // GET THE INFORMATION FOR EACH FROM PROPS PASSED FROM DepartmentList
   render() {
     const {toDep} = this.state;
-    if(toDep){
+
+    // Redirect
+    if (toDep) {
       return <Redirect to={'/DepartmentPage/' + this.props.id}/>
     }
+
+    // Consists of the department name and address, and its overall rating
     return(
       <div className="deptListItem" onClick={this.deptRedirect}>
         <div className="deptListNameAddress">
@@ -54,13 +58,17 @@ class DepartmentListItem extends React.Component {
   }
 }
 
+// List of all returned departments
 class DepartmentList extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       departments:null
     };
   }
+
+  // Make API call after component mounts
   componentDidMount() {
     axios.get(`${baseUrl}/department/all`)
       .then(res => {
@@ -68,9 +76,11 @@ class DepartmentList extends React.Component {
         this.setState({departments:res.data.departments});
       });
   }
+
   render() {
     // Address, name, overall_rating, zipcode
     const {departments} = this.state;
+
     return(
       <div>
         {departments != null && departments.map(department => (
@@ -82,9 +92,9 @@ class DepartmentList extends React.Component {
   }
 }
 
+// Contains everything below the header on this page
 class AllDeptContent extends React.Component {
   render() {
-    // Parent of PostFeed
     return (
       <div className="allDeptContent">
         <div className="centerBox">
@@ -95,8 +105,8 @@ class AllDeptContent extends React.Component {
   }
 }
 
+// Render all page elements
 class AllDepartmentsPage extends React.Component {
-
   render() {
     return (
       <div className="allDeptMain">

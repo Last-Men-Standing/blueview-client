@@ -18,7 +18,7 @@ First, run `npm install` to install the dependencies.
 
 Then run `npm start` to start the client service.
 
-It will open in your default browser to `localhost:3000`.
+It will open in your default browser to `localhost:5000`.
 
 ## Pages
 
