@@ -10,7 +10,7 @@ You will need [Node](https://nodejs.org/en/download/) installed before running t
 
 Download and unpack zipped repository.
 
-In your command line, navigate to the topmost directory, blueview-client.
+In your command line, navigate to the topmost directory, `blueview-client`.
 
 First, run `npm install` to install the dependencies.
 
