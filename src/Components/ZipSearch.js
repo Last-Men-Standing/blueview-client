@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import baseUrl from '../Utils/config'
 import axios from 'axios';
-// import logo from './logo.svg';
 import './ZipSearch.css';
+
 class ZipSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -13,10 +13,12 @@ class ZipSearch extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Updates state when user types
   updateZip(event) {
     this.setState({zipcode: event.target.value});
   }
 
+  // Called when user presses submit button
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.zipcode);
@@ -39,20 +41,19 @@ class ZipSearch extends React.Component {
       
     }
     
+    // Consists of a simple box with a field and submit button
     return (
       <React.Fragment>
         <div className="main">
           <div className="zipContainer">
-          <h2 className="zipSubtitle">Enter Your Zipcode</h2>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" id="zipcode" className="zipField" value={this.state.zipcode} onChange={this.updateZip} />
-            <input type="submit" value="ENTER" className="zipSubmit"/>
-        </form>
-      </div>
-    </div>
+            <h2 className="zipSubtitle">Enter Your Zipcode</h2>
+            <form onSubmit={this.handleSubmit}>
+              <input type="text" id="zipcode" className="zipField" value={this.state.zipcode} onChange={this.updateZip} />
+              <input type="submit" value="ENTER" className="zipSubmit"/>
+            </form>
+          </div>
+        </div>
       </React.Fragment>
-    
-      
     );
   }
 }

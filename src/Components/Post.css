@@ -157,6 +157,9 @@ The post itself ------------------
 }
 
 
+/*
+Reply components
+*/
 
 
 .replyFeedBody {
@@ -178,7 +181,7 @@ The post itself ------------------
 
 .startReply {
     font-weight: bold;
-    color: #32CD32;  /* Overridden somewhere without !important */
+    color: #32CD32;
     font-size: 13px;
     cursor: pointer;
 }
