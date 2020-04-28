@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import baseUrl from '../Utils/config';
 import axios from 'axios';
 
+// Simple form window with fields for relevant user information
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -30,12 +31,12 @@ class Register extends React.Component {
     this.alreadyUser = this.alreadyUser.bind(this);
   }
 
+  // Updates state when user types
   onUpdate(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
-
   
-  
+  // Creates user and signs them in
   handleSubmit(event) {
     event.preventDefault();
     console.log("Submitting");
@@ -60,6 +61,7 @@ class Register extends React.Component {
     });
   }
 
+  // Redirect to sign in page
   alreadyUser(event) {
     this.setState({toSignIn: true});
   }

@@ -5,6 +5,7 @@ import './SignIn.css';
 import baseUrl from '../Utils/config'
 import axios from 'axios';
 
+// Simple form window with fields for username and password
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -23,16 +24,20 @@ class SignIn extends React.Component {
     this.notUser = this.notUser.bind(this);
   }
 
+  // Update state when user types in username
   updateUsername(event) {
     this.setState({username: event.target.value});
   }
 
+  // Update state when user types in password
   updatePassword(event) {
     this.setState({password: event.target.value});
   }
 
+  // Sign in or set triedIncorrect to true for error message
   handleSubmit(event) {
     event.preventDefault();
+
     axios.post(`${baseUrl}/account/login`, {
       username: this.state.username,
       password: this.state.password
@@ -53,6 +58,7 @@ class SignIn extends React.Component {
     });
   }
 
+  // Redirect to register page
   notUser(event) {
     this.setState({toRegister: true});
   }
