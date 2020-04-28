@@ -8,11 +8,11 @@ Anthony Chen
 
 ## Instructions
 
-You will need [Node](https://nodejs.org/en/download/) installed before running this software.
+You will need [Node](https://nodejs.org/en/download/) installed to run this software.
 
-Clone the repository, or download and unpack the zipped version.
+Clone the repository or download and unpack the zipped version.
 
-In your command line, navigate to the topmost directory, `blueview-client`.
+In your command line navigate to the topmost directory, `blueview-client`.
 
 First, run `npm install` to install the dependencies.
 
