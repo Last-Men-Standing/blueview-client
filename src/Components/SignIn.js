@@ -48,8 +48,9 @@ class SignIn extends React.Component {
       //TODO: Handle incorrect user and password
       this.setState({
         triedIncorrect: true
-    });
+      });
     //TODO: Cleanup?
+    });
   }
 
   notUser(event) {
